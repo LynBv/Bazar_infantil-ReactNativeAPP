@@ -1,7 +1,8 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { styles } from "./style";
 import { PropsCard } from "./type";
+import IconM from '@expo/vector-icons/MaterialCommunityIcons';
 
 const PostCard = ({ postagem }: PropsCard) => {
   return (
@@ -15,7 +16,10 @@ const PostCard = ({ postagem }: PropsCard) => {
         <Text style={styles.preco}>{`R$${postagem.preco}`}</Text>
       </View>
       <Text style={styles.descricao}>{postagem.conteudo}</Text>
-      <Text>VER MAIS DETALHES</Text>
+      <TouchableOpacity style={styles.more}>
+        <Text>VER MAIS DETALHES</Text>
+        <IconM name="chevron-down" size={30} color="#000" />
+      </TouchableOpacity>
     </View>
   );
 };

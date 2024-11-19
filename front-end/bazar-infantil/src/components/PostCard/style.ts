@@ -23,8 +23,7 @@ export const styles = StyleSheet.create({
 
   precoCard: {
     backgroundColor: "#96CEB4",
-    borderRadius: 20,
-    //backgroundColor: "gray"
+    borderRadius: 20
   },
 
   preco: {
@@ -51,4 +50,8 @@ export const styles = StyleSheet.create({
   descricao: {
     fontSize: 20,
   },
+
+  more:{  width: "100%",
+    justifyContent: "center",
+    alignItems: "center",}
 });

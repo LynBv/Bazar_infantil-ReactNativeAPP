@@ -3,10 +3,12 @@ import React from "react";
 import { ArrayPostagem } from "./type";
 import PostCard from "../PostCard";
 import { styles } from "./style";
+import SearchBarFedd from "../SearchBarFeed";
 
 const FeedRow = ({ listaPostagem }: ArrayPostagem) => {
   return (
-   
+   <>
+      <SearchBarFedd/>
       <FlatList
         data={listaPostagem}
         keyExtractor={(item) => item.id.toString()}
@@ -15,8 +17,8 @@ const FeedRow = ({ listaPostagem }: ArrayPostagem) => {
             <PostCard postagem={item} />
           </View>
         )}
-      ></FlatList>
-
+      />
+</>
   );
 };
 
