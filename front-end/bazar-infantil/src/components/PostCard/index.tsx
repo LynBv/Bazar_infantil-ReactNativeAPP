@@ -1,20 +1,21 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
-import avatar from "../../assets/avatar/avatar1.png";
-import roupa from "../../assets/roupas/roupa1.png";
 import { styles } from "./style";
+import { PropsCard } from "./type";
 
-const PostCard = () => {
+const PostCard = ({ postagem }: PropsCard) => {
   return (
     <View style={styles.card}>
       <View style={styles.infoUser}>
-        <Image source={avatar} style={styles.avatar} />
-        <Text style={styles.nomeUsuario}>Ana</Text>
+        <Image source={postagem.fotoUsuario} style={styles.avatar} />
+        <Text style={styles.nomeUsuario}>{postagem.nomeUsuario}</Text>
       </View>
-      <Image source={roupa} style={styles.postImg} />
-      <Text style={styles.descricao}>
-        Descricao do produto bla bla bla bla bla bla bla bla bla
-      </Text>
+      <Image source={postagem.fotoPostagem} style={styles.postImg} />
+      <View style={styles.precoCard}>
+        <Text style={styles.preco}>{`R$${postagem.preco}`}</Text>
+      </View>
+      <Text style={styles.descricao}>{postagem.conteudo}</Text>
+      <Text>VER MAIS DETALHES</Text>
     </View>
   );
 };
