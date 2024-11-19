@@ -10,7 +10,6 @@ import {styles} from "./style"
 export default function Feed() {
   return (
     <View style={styles.container}>
-   
       <FeedRow listaPostagem={postagens}/>
     </View>
   )

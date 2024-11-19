@@ -8,9 +8,13 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     gap: 20,
     padding: 20,
-    borderRadius: 50,
+    borderRadius: 30,
     elevation: 20,
     shadowColor: "#4B92A7",
+  },
+
+  estiloTexto: {
+    color: "#4A4A4A",
   },
 
   infoUser: {
@@ -23,7 +27,7 @@ export const styles = StyleSheet.create({
 
   precoCard: {
     backgroundColor: "#96CEB4",
-    borderRadius: 20
+    borderRadius: 20,
   },
 
   preco: {
@@ -45,13 +49,12 @@ export const styles = StyleSheet.create({
 
   nomeUsuario: {
     fontSize: 20,
+    fontWeight: 600,
   },
 
   descricao: {
-    fontSize: 20,
+    fontSize: 18,
   },
 
-  more:{  width: "100%",
-    justifyContent: "center",
-    alignItems: "center",}
+  more: { width: "100%", justifyContent: "center", alignItems: "center" },
 });
