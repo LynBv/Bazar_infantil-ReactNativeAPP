@@ -1,9 +1,11 @@
-
-import Feed from './src/screens/Feed';
+import { StatusBar } from "react-native";
+import Feed from "./src/screens/Feed";
 
 export default function App() {
   return (
-    <Feed/>
+    <>
+    <StatusBar/>
+      <Feed />
+    </>
   );
 }
-;
