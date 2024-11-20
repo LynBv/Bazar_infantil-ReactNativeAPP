@@ -7,10 +7,10 @@ import { SearchBar } from 'react-native-elements'
 import SearchBarFedd from '../../components/SearchBarFeed'
 import {styles} from "./style"
 
-export default function Feed() {
+export default function Exemplo() {
   return (
     <View style={styles.container}>
-      <FeedRow listaPostagem={postagens}/>
+      <Text>EXEMPLO</Text>
     </View>
   )
 }
