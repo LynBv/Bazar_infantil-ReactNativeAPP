@@ -4,6 +4,7 @@ import { TabRouters } from './BottonTabs';
 import Feed from '../screens/Feed';
 import CadastroUsuario from '../screens/CadastroUsuario';
 
+
 const Stack = createNativeStackNavigator();
 
 export const StackRouters = () => {
