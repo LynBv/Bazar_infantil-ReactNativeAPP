@@ -1,22 +1,11 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Carrinho from './src/screens/Carrinho/CarrinhoScreen';
-
-const Stack = createStackNavigator();
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: { backgroundColor: '#86a1db' },
-          headerTintColor: '#fff',
-          headerTitleAlign: 'center',
-        }}
-      >
-        <Stack.Screen name="Carrinho" component={Carrinho} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <>
+    <StatusBar style="light" backgroundColor='##191414'/>
+    <Routers />
+  </>
   );
 }
