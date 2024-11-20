@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { styles } from "./style";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CadastroUsuario() {
     const [name, setName] = useState("");
@@ -8,10 +9,12 @@ export default function CadastroUsuario() {
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
+    const navigation = useNavigation(); 
+
     function handleCreateUser() {
         if (name && email && password !== "" && password === passwordConfirm) {
             alert("Cadastro criado com sucesso");
-            // navigation.navigate("login");
+            navigation.navigate("StackLogin");
         } else {
             alert("Ops! algo errado");
         }
