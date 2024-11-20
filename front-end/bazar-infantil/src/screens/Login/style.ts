@@ -3,37 +3,45 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#e6e6ea",
-    },
-
-    estiloTexto: {
-        fontSize: 50,
-        color: '#2ab7ca',
-    },
-
-    
-
-    boxForms: {
-        width: "80%",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#00000090",
-        paddingVertical: 20,
-        paddingHorizontal: 20,
-        gap: 10,
-        borderRadius: 5,
+        backgroundColor: "#96ceb410",
     },
 
-    avatarImage: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
+    title: {
+        fontSize: 40,
+        color: "#00000080",
+        marginBottom: 10,
+        marginTop: 40,
+        fontWeight: "bold",
+        textAlign: "center",
     },
 
-    backgroundImage: {
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
+    subtitle: {
+        fontSize: 20,
+        color: "#00000080",
+        marginBottom: 24,
+        marginTop: 0,
+        fontWeight: "bold",
+        textAlign: "center",
+    },
+
+    logoImage: {
+        alignSelf: "center",
+        width: 250,
+        height: 250,
+        marginBottom: 40,
+    },
+
+    signupText: {
+        marginTop: 40,
+        fontSize: 14,
+        textAlign: "center",
+        color: "#555",
+    },
+
+    link: {
+        color: "#96ceb4",
+        fontWeight: "bold",
     },
 });

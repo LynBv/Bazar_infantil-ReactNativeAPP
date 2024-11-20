@@ -1,23 +1,32 @@
 import React, { useState } from "react";
 import {
     Alert,
-    ImageBackground,
+    Image,
     Keyboard,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     View,
 } from "react-native";
-import BackgroundImage from "../../assets/varal1.jpg";
+
+import { useNavigation } from "@react-navigation/native";
+import { Text } from "react-native-elements";
+import LogoImage from "../../assets/logo/logoTranparente.png";
 import { ButtonTypes } from "../../components/ButtonTypes";
-import { TextInputField } from "../../components/TextImput";
+import { TextInputField } from "../../components/TextImputField";
 import { styles } from "./style";
 
 export const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
+    const navigation = useNavigation();
+
     const handleLogin = () => {
-        Alert.alert("Botão para realizar login");
-        console.log("Pegando informações", email, password);
+        if (email === "teste@teste.com" && password === "123456") {
+            navigation.navigate("StackFeed");
+        } else {
+            Alert.alert("Erro", "Email ou senha inválidos");
+        }
     };
 
     const handlePassword = (value: string) => {
@@ -31,38 +40,42 @@ export const Login = () => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-                <ImageBackground
-                    style={styles.backgroundImage}
-                    resizeMode="cover"
-                    source={BackgroundImage}
+                <Text style={styles.title}>Pequenos Tesouros</Text>
+                <Text style={styles.subtitle}>
+                    Roupinhas cheias de amor e novas aventuras!
+                </Text>
+
+                <Image style={styles.logoImage} source={LogoImage} alt="Logo" />
+
+                <TextInputField
+                    placeHolder="Digite seu email"
+                    valueInput={email}
+                    hadleFunctionInput={handleEmail}
+                    typeIcon="person"
+                />
+
+                <TextInputField
+                    placeHolder="Digite sua senha"
+                    valueInput={password}
+                    hadleFunctionInput={handlePassword}
+                    typeInput={true}
+                    typeIcon="password"
+                />
+
+                <ButtonTypes
+                    title="Login"
+                    handleFunction={handleLogin}
+                    propsBackgroundColor="#96ceb4"
+                />
+
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("StackCadastroUsuario")}
                 >
-                    
-
-                    <View style={styles.boxForms}>
-                        <View style={{ marginTop: 50 }} />
-
-                        <TextInputField
-                            placeHolder="Digite seu email"
-                            valueInput={email}
-                            hadleFunctionInput={handleEmail}
-                            typeIcon="person"
-                        />
-
-                        <TextInputField
-                            placeHolder="Digite sua senha"
-                            valueInput={password}
-                            hadleFunctionInput={handlePassword}
-                            typeInput={true}
-                            typeIcon="password"
-                        />
-
-                        <ButtonTypes
-                            title="Login"
-                            handleFunction={handleLogin}
-                            propsBackgroundColor="#fe4a49"
-                        />
-                    </View>
-                </ImageBackground>
+                    <Text style={styles.signupText}>
+                        Ainda não tem cadastro?{" "}
+                        <Text style={styles.link}>Clique aqui.</Text>
+                    </Text>
+                </TouchableOpacity>
             </View>
         </TouchableWithoutFeedback>
     );
