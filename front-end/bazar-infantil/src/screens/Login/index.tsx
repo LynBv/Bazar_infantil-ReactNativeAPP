@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import {
     Alert,
+    Image,
     ImageBackground,
     Keyboard,
     TouchableWithoutFeedback,
     View,
 } from "react-native";
-import BackgroundImage from "../../assets/varal1.jpg";
+import BackgroundImage from "../../assets/logo/logoTranparente.png";
+import { LogoImage } from "../../assets/logo/logo.png";
 import { ButtonTypes } from "../../components/ButtonTypes";
 import { TextInputField } from "../../components/TextImput";
 import { styles } from "./style";
+import { Text } from "react-native-elements";
 
 export const Login = () => {
     const [email, setEmail] = useState<string>("");
@@ -31,15 +34,25 @@ export const Login = () => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
+                
+
+            <Text style={styles.title}>Pequenos Tesouros</Text>
+            
                 <ImageBackground
                     style={styles.backgroundImage}
                     resizeMode="cover"
                     source={BackgroundImage}
                 >
+                
+                    <Image
+                    style={styles.logoImage}
+                    source={LogoImage}
+                    alt="Logo "
+                />
                     
 
                     <View style={styles.boxForms}>
-                        <View style={{ marginTop: 50 }} />
+                        
 
                         <TextInputField
                             placeHolder="Digite seu email"
@@ -59,7 +72,7 @@ export const Login = () => {
                         <ButtonTypes
                             title="Login"
                             handleFunction={handleLogin}
-                            propsBackgroundColor="#fe4a49"
+                            propsBackgroundColor="#96ceb4"
                         />
                     </View>
                 </ImageBackground>

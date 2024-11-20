@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         borderRadius: 5,
         paddingLeft: 10,
         fontSize: 22,
-        paddingRight: 45,
+        
     },
 
     boxIcon: {

@@ -26,7 +26,7 @@ export const TextInputField = ({
                 onChangeText={hadleFunctionInput}
                 style={styles.input}
                 placeholder={placeHolder}
-                placeholderTextColor="#fe4a49"
+                placeholderTextColor="#00000080"
                 secureTextEntry={
                     typeIcon === "password" ? viewPassword : typeInput
                 }
@@ -35,7 +35,7 @@ export const TextInputField = ({
 
             <View style={styles.boxIcon}>
                 {typeIcon === "person" && (
-                    <Icon name="user" size={24} color="#fe4a49" />
+                    <Icon name="user" size={24} color="#00000080" />
                 )}
 
                 {typeIcon === "password" && (
@@ -43,9 +43,9 @@ export const TextInputField = ({
                         onPress={() => setViewPassword(!viewPassword)}
                     >
                         {viewPassword ? (
-                            <Icon name="eye-off" size={24} color="#fe4a49" />
+                            <Icon name="eye-off" size={24} color="#00000080" />
                         ) : (
-                            <Icon name="eye" size={24} color="#fe4a49" />
+                            <Icon name="eye" size={24} color="#00000080" />
                         )}
                     </TouchableOpacity>
                 )}
