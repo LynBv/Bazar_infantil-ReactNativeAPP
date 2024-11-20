@@ -2,17 +2,20 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     boxInput: {
-        width: "100%",
+        width: 350,
+        height: 50,
+        marginBottom: 15,
+        overflow: "hidden",
     },
 
     input: {
-        backgroundColor: "#fff",
-        width: "100%",
-        height: 55,
-        borderRadius: 5,
-        paddingLeft: 10,
-        fontSize: 22,
-        
+        height: 50,
+        borderColor: "#96ceb4",
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingHorizontal: 10,
+        fontSize: 16,
+        backgroundColor: "#f9f9f9",
     },
 
     boxIcon: {
@@ -22,5 +25,6 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         right: 0,
         width: 40,
+        paddingRight: 10,
     },
 });

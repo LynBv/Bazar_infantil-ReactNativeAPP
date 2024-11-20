@@ -1,42 +1,45 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    Container: {
+    container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#96ceb430',
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#96ceb430",
     },
     form: {
-        alignItems: 'center',
-        justifyContent: 'center',
+        alignItems: "center",
+        justifyContent: "center",
     },
-    inputUserName: {
-        backgroundColor: '#FFF',
-        width: 250,
-        height: 35,
-        borderRadius: 5,
-        padding: 5,        
+
+    avatarTitle: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginVertical: 10,
+        textAlign: "center",
+        color: "#00000080",
+        marginTop: 50,
     },
-    inputForm: {
-        backgroundColor: '#FFF',
-        marginTop: 13,
-        width: 250,
-        height: 35,
-        borderRadius: 5,
-        padding: 5,
+
+    avatarContainer: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        marginVertical: 10,
     },
-    buttonForm: {
-        backgroundColor: '#96ceb4',
-        width: 100,
-        height: 30,
-        borderRadius: 5,
-        marginTop: 13,
-        alignItems: 'center',
-        justifyContent: 'center',
+
+    avatarImage: {
+        width: 60,
+        height: 60,
+        margin: 5,
+        borderRadius: 30,
+        borderWidth: 2,
+        borderColor: "transparent",
+        marginTop: 15,
     },
-    textButton: {
-        color: '#FFF',
-        fontWeight: 'bold',
+
+    avatarSelected: {
+        borderColor: "#96ceb4",
+        borderWidth: 5,
     },
-})
+});

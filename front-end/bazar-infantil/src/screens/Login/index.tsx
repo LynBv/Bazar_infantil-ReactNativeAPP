@@ -2,25 +2,31 @@ import React, { useState } from "react";
 import {
     Alert,
     Image,
-    ImageBackground,
     Keyboard,
+    TouchableOpacity,
     TouchableWithoutFeedback,
     View,
 } from "react-native";
-import BackgroundImage from "../../assets/logo/logoTranparente.png";
-import { LogoImage } from "../../assets/logo/logo.png";
-import { ButtonTypes } from "../../components/ButtonTypes";
-import { TextInputField } from "../../components/TextImput";
-import { styles } from "./style";
+
+import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native-elements";
+import LogoImage from "../../assets/logo/logoTranparente.png";
+import { ButtonTypes } from "../../components/ButtonTypes";
+import { TextInputField } from "../../components/TextImputField";
+import { styles } from "./style";
 
 export const Login = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
 
+    const navigation = useNavigation();
+
     const handleLogin = () => {
-        Alert.alert("Botão para realizar login");
-        console.log("Pegando informações", email, password);
+        if (email === "teste@teste.com" && password === "123456") {
+            navigation.navigate("StackFeed");
+        } else {
+            Alert.alert("Erro", "Email ou senha inválidos");
+        }
     };
 
     const handlePassword = (value: string) => {
@@ -34,48 +40,42 @@ export const Login = () => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.container}>
-                
+                <Text style={styles.title}>Pequenos Tesouros</Text>
+                <Text style={styles.subtitle}>
+                    Roupinhas cheias de amor e novas aventuras!
+                </Text>
 
-            <Text style={styles.title}>Pequenos Tesouros</Text>
-            
-                <ImageBackground
-                    style={styles.backgroundImage}
-                    resizeMode="cover"
-                    source={BackgroundImage}
-                >
-                
-                    <Image
-                    style={styles.logoImage}
-                    source={LogoImage}
-                    alt="Logo "
+                <Image style={styles.logoImage} source={LogoImage} alt="Logo" />
+
+                <TextInputField
+                    placeHolder="Digite seu email"
+                    valueInput={email}
+                    hadleFunctionInput={handleEmail}
+                    typeIcon="person"
                 />
-                    
 
-                    <View style={styles.boxForms}>
-                        
+                <TextInputField
+                    placeHolder="Digite sua senha"
+                    valueInput={password}
+                    hadleFunctionInput={handlePassword}
+                    typeInput={true}
+                    typeIcon="password"
+                />
 
-                        <TextInputField
-                            placeHolder="Digite seu email"
-                            valueInput={email}
-                            hadleFunctionInput={handleEmail}
-                            typeIcon="person"
-                        />
+                <ButtonTypes
+                    title="Login"
+                    handleFunction={handleLogin}
+                    propsBackgroundColor="#96ceb4"
+                />
 
-                        <TextInputField
-                            placeHolder="Digite sua senha"
-                            valueInput={password}
-                            hadleFunctionInput={handlePassword}
-                            typeInput={true}
-                            typeIcon="password"
-                        />
-
-                        <ButtonTypes
-                            title="Login"
-                            handleFunction={handleLogin}
-                            propsBackgroundColor="#96ceb4"
-                        />
-                    </View>
-                </ImageBackground>
+                <TouchableOpacity
+                    onPress={() => navigation.navigate("StackCadastroUsuario")}
+                >
+                    <Text style={styles.signupText}>
+                        Ainda não tem cadastro?{" "}
+                        <Text style={styles.link}>Clique aqui.</Text>
+                    </Text>
+                </TouchableOpacity>
             </View>
         </TouchableWithoutFeedback>
     );

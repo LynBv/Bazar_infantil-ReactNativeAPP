@@ -1,70 +1,93 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
-import { styles } from "./style";
 import { useNavigation } from "@react-navigation/native";
+import React, { useState } from "react";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image } from "react-native-elements";
+import { ButtonTypes } from "../../components/ButtonTypes";
+import { CustomTextInput } from "../../components/CustomTextImput";
+import { styles } from "./style";
+
+const avatarOptions = [
+    require("../../assets/avatar/avatar1.png"),
+    require("../../assets/avatar/avatar2.png"),
+    require("../../assets/avatar/avatar3.png"),
+    require("../../assets/avatar/avatar4.png"),
+    require("../../assets/avatar/avatar5.png"),
+    require("../../assets/avatar/avatar6.png"),
+    require("../../assets/avatar/avatar7.png"),
+    require("../../assets/avatar/avatar8.png"),
+    require("../../assets/avatar/avatar9.png"),
+];
 
 export default function CadastroUsuario() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [selectedAvatar, setSelectedAvatar] = useState(avatarOptions[0]);
 
-    const navigation = useNavigation(); 
+    const navigation = useNavigation();
 
     function handleCreateUser() {
         if (name && email && password !== "" && password === passwordConfirm) {
             alert("Cadastro criado com sucesso");
             navigation.navigate("StackLogin");
         } else {
-            alert("Ops! algo errado");
+            alert("Algo deu errado.");
         }
     }
     return (
-        <View style={styles.Container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.form}>
-                <TextInput
-                    style={styles.inputUserName}
+                <CustomTextInput
                     placeholder="Nome"
-                    autoComplete="username"
-                    autoCapitalize="none"
-                    placeholderTextColor="#000"
-                    autoCorrect={false}
-                    onChangeText={(event) => setName(event)}
+                    value={name}
+                    onChangeText={setName}
                 />
-                <TextInput
-                    style={styles.inputForm}
+                <CustomTextInput
                     placeholder="Email"
-                    autoComplete="email"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholderTextColor="#000"
-                    onChangeText={(event) => setEmail(event)}
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
                 />
-                <TextInput
-                    style={styles.inputForm}
+                <CustomTextInput
                     placeholder="Senha"
-                    autoComplete="password"
-                    autoCapitalize="none"
-                    placeholderTextColor="#000"
-                    autoCorrect={false}
-                    onChangeText={(event) => setPassword(event)}
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
                 />
-                <TextInput
-                    style={styles.inputForm}
+                <CustomTextInput
                     placeholder="Confirmar senha"
-                    autoComplete="password"
-                    autoCapitalize="none"
-                    autoCorrect={false}
-                    placeholderTextColor="#000"
-                    onChangeText={(event) => setPasswordConfirm(event)}
+                    value={passwordConfirm}
+                    onChangeText={setPasswordConfirm}
+                    secureTextEntry
                 />
-                <TouchableOpacity
-                    style={styles.buttonForm}
-                    onPress={handleCreateUser}
-                >
-                    <Text style={styles.textButton}>Cadastrar</Text>
-                </TouchableOpacity>
+
+                <Text style={styles.avatarTitle}>Escolha um Avatar:</Text>
+
+                <View style={styles.avatarContainer}>
+                    {avatarOptions.map((avatar, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            onPress={() => setSelectedAvatar(avatar)}
+                        >
+                            <Image
+                                source={avatar}
+                                style={[
+                                    styles.avatarImage,
+                                    selectedAvatar === avatar &&
+                                        styles.avatarSelected,
+                                ]}
+                            />
+                        </TouchableOpacity>
+                    ))}
+                </View>
+
+                <ButtonTypes
+                    title="Cadastrar"
+                    handleFunction={handleCreateUser}
+                    propsBackgroundColor="#96ceb4"
+                />
             </View>
-        </View>
+        </ScrollView>
     );
 }
