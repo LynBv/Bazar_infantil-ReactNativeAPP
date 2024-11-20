@@ -1,5 +1,6 @@
 export type PropsStack = {
     StackLogin: undefined,
+    StackCadastroUsuario: undefined,
     StackFeed: undefined,
   }
   
