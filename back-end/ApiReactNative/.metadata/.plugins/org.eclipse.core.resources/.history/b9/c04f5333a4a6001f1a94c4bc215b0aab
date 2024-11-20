@@ -1,0 +1,8 @@
+package br.org.serratec.dto;
+
+public class UsuarioInserirDTO {
+	private String nome;
+	private String email;
+	private String senha;
+	private String confirmaSenha;
+}

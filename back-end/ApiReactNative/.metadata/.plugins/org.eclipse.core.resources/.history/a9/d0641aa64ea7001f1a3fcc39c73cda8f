@@ -1,0 +1,5 @@
+package br.org.serratec.enums;
+
+public enum CategoriasIdadeAnos {
+	ANO1, ANOS2, ANOS4, ANOS6, ANOS8, ANOS10, ANOS12, ANOS14
+}

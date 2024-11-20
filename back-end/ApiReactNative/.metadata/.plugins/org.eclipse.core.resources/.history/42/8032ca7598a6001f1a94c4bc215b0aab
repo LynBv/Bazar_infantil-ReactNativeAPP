@@ -1,0 +1,112 @@
+package br.org.serratec.dto;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Objects;
+
+import br.org.serratec.domain.Foto;
+import br.org.serratec.domain.Postagem;
+import br.org.serratec.domain.Usuario;
+
+public class PostagemDTO {
+
+	private Long id;
+
+	private String texto;
+	
+	private Double preco;
+	
+	private LocalDate dataCriacao;
+
+	private List<Foto> foto;
+
+	private UsuarioDTO usuarioDTO;
+	
+	public PostagemDTO() {
+	}
+
+	public PostagemDTO(Long id, String texto, Double preco, LocalDate dataCriacao, List<Foto> foto, UsuarioDTO usuarioDTO) {
+		this.id = id;
+		this.texto = texto;
+		this.preco = preco;
+		this.dataCriacao = dataCriacao;
+		this.foto = foto;
+		this.usuarioDTO = usuarioDTO;
+	}
+	
+	public PostagemDTO(Postagem postagem) {
+		this.id = postagem.getId();
+		this.texto = postagem.getTexto();
+		this.preco = postagem.getPreco();
+		this.dataCriacao = postagem.getDataCriacao();
+		this.foto = postagem.getFoto();
+		this.usuarioDTO = new UsuarioDTO(postagem.getUsuario());
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public List<Foto> getFoto() {
+		return foto;
+	}
+
+	public void setFoto(List<Foto> foto) {
+		this.foto = foto;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PostagemDTO other = (PostagemDTO) obj;
+		return Objects.equals(id, other.id);
+	}
+	
+	
+}

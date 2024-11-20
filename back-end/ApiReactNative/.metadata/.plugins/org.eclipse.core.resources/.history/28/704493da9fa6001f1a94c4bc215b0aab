@@ -1,0 +1,14 @@
+package br.org.serratec.dto;
+
+import java.util.List;
+
+import br.org.serratec.domain.Foto;
+
+public class PostagemInserirDTO {
+
+	private String texto;
+	private Double preco;
+	private List<Foto> fotos;
+	
+	
+}
