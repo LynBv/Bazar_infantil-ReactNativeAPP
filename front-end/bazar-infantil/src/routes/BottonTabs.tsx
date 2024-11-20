@@ -4,6 +4,8 @@ import CreatePostScreen from "../screens/CriarPostagem";
 import { Text, View } from "react-native";
 import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { styles } from "./style";
+import { Login } from "../screens/Login";
+import Exemplo from "../screens/Exemplo";
 
 const Tab = createBottomTabNavigator();
 
@@ -48,6 +50,23 @@ export const TabRouters = () => {
           ),
         }}
       />
+      <Tab.Screen
+        name="TabsCarrinho"
+        component={Exemplo}
+        options={{
+          tabBarIcon: ({ focused, size }) => (
+            <View style={styles.boxTabBar}>
+              <IconM
+                name="cart"
+                size={focused ? 30 : size}
+                color={focused ? "#88d8b0" : "gray"}
+              />
+            </View>
+          ),
+        }}
+      />
+    
     </Tab.Navigator>
+    
   );
 };
