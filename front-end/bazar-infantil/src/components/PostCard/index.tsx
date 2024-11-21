@@ -1,8 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { styles } from "./style";
-import { PropsCard } from "./type";
-import IconM from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
 import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { PropsPostagem } from "../FeedRow/type";
