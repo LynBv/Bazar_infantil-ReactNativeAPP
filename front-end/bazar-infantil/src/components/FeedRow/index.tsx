@@ -1,15 +1,14 @@
 import { View, Text, FlatList } from "react-native";
 import React from "react";
-import { ArrayPostagem } from "./type";
 import PostCard from "../PostCard";
 import { styles } from "./style";
 import SearchBarFedd from "../SearchBarFeed";
+import { ArrayPostagem} from "./type";
 
 const FeedRow = ({ listaPostagem }: ArrayPostagem) => {
   return (
-   <>
-      <SearchBarFedd/>
       <FlatList
+      style={{ width: "95%" }}
         data={listaPostagem}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
@@ -18,7 +17,6 @@ const FeedRow = ({ listaPostagem }: ArrayPostagem) => {
           </View>
         )}
       />
-</>
   );
 };
 
