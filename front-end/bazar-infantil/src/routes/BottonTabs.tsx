@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Feed from "../screens/Feed";
 import CreatePostScreen from "../screens/CriarPostagem";
