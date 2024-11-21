@@ -1,4 +1,3 @@
-import React from 'react';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Feed from "../screens/Feed";
 import CreatePostScreen from "../screens/CriarPostagem";
@@ -7,6 +6,8 @@ import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { styles } from "./style";
 import { Login } from "../screens/Login";
 import Exemplo from "../screens/Exemplo";
+import React from "react";
+import Carrinho from "../screens/Carrinho/CarrinhoScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +54,7 @@ export const TabRouters = () => {
       />
       <Tab.Screen
         name="TabsCarrinho"
-        component={Exemplo}
+        component={Carrinho}
         options={{
           tabBarIcon: ({ focused, size }) => (
             <View style={styles.boxTabBar}>

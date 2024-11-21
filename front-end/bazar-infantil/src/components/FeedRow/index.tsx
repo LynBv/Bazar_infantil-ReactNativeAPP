@@ -1,24 +1,36 @@
-import { View, Text, FlatList } from "react-native";
-import React from "react";
-import { ArrayPostagem } from "./type";
+import { View, Text, FlatList, RefreshControl } from "react-native";
+import { useState } from "react";
 import PostCard from "../PostCard";
 import { styles } from "./style";
-import SearchBarFedd from "../SearchBarFeed";
+import { ArrayPostagem, PropsRow } from "./type";
+import React from 'react';
 
-const FeedRow = ({ listaPostagem }: ArrayPostagem) => {
+const FeedRow = ({ listaPostagem, onRefreshing }: PropsRow) => {
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+
+  const recarregar = async () => {
+    setRefreshing(true);
+    await onRefreshing();
+    setRefreshing(false);
+  };
+
   return (
-   <>
-      <SearchBarFedd/>
-      <FlatList
-        data={listaPostagem}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.container}>
-            <PostCard postagem={item} />
-          </View>
-        )}
-      />
-</>
+    <FlatList
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={async () => await recarregar()}
+        />
+      }
+      style={{ width: "95%" }}
+      data={listaPostagem.sort((a, b) => b.id - a.id)}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.container}>
+          <PostCard postagem={item} />
+        </View>
+      )}
+    />
   );
 };
 
