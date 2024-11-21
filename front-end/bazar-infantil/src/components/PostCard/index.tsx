@@ -9,6 +9,7 @@ const PostCard = ({ postagem }: PropsPostagem) => {
   const postImage = "data:image/png;base64," + postagem.foto[0].dados;
 
   return (
+
     <View style={styles.card}>
 
       <View style={styles.infoUser}>
@@ -28,12 +29,15 @@ const PostCard = ({ postagem }: PropsPostagem) => {
       </View>
 
       <View style={styles.infoCompra}>
+
         <View style={styles.precoCard}>
           <Text style={styles.preco}>{`R$${postagem.preco}`}</Text>
         </View>
+
         <TouchableOpacity >
         <IconM name="cart-arrow-down" size={45} color="#96CEB4" />
         </TouchableOpacity>
+        
       </View>
 
       <TouchableOpacity style={styles.more}>

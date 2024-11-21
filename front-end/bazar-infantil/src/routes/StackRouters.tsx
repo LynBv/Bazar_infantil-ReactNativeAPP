@@ -3,6 +3,7 @@ import { Login } from '../screens/Login';
 import { TabRouters } from './BottonTabs';
 import Feed from '../screens/Feed';
 import CadastroUsuario from '../screens/CadastroUsuario';
+import React from 'react';
 
 
 const Stack = createNativeStackNavigator();
