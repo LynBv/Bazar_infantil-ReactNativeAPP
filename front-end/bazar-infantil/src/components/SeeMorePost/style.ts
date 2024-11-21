@@ -85,5 +85,24 @@ export const styles = StyleSheet.create({
     textShadowColor: "#000",
     textShadowRadius: 15,
     color: "#ff60aa"
-  }
+  },
+
+  postTitle:{
+    fontSize: 40,
+    textAlign:"center",
+    fontWeight:"bold",
+  },
+
+  postSmallDetails:{
+    flexDirection:"row",
+    width:"100%",
+    justifyContent:"space-evenly",
+  },
+
+  postCateg:{
+    fontSize:14,
+    backgroundColor:"#7a7a7a60",
+    borderRadius: 15,
+    
+  },
 });
