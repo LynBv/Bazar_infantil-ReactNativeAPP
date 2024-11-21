@@ -1,23 +1,29 @@
 import React, { useState } from "react";
 import {
-    Alert,
-    ImageBackground,
+    Image,
     Keyboard,
+    TouchableOpacity,
     TouchableWithoutFeedback,
-    View,
+    View
 } from "react-native";
-import BackgroundImage from "../../assets/varal1.jpg";
+
+import { useNavigation } from "@react-navigation/native";
+import { Text } from "react-native-elements";
+import LogoImage from "../../assets/logo/pequenos-tesouros-logo.png";
 import { ButtonTypes } from "../../components/ButtonTypes";
-import { TextInputField } from "../../components/TextImput";
+import { Loading } from "../../components/Loading";
+import { TextInputField } from "../../components/TextImputField";
+import { useAuth } from "../../hooks/useAuth";
 import { styles } from "./style";
 
 export const Login = () => {
-    const [email, setEmail] = useState<string>("");
+    const { email, setEmail, checkAuthentication, isLoading } = useAuth();
     const [password, setPassword] = useState<string>("");
 
+    const navigation = useNavigation();
+
     const handleLogin = () => {
-        Alert.alert("Botão para realizar login");
-        console.log("Pegando informações", email, password);
+        checkAuthentication(email);
     };
 
     const handlePassword = (value: string) => {
@@ -29,17 +35,22 @@ export const Login = () => {
     };
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
-                <ImageBackground
-                    style={styles.backgroundImage}
-                    resizeMode="cover"
-                    source={BackgroundImage}
-                >
-                    
+        <React.Fragment>
+            {isLoading ? (
+                <Loading />
+            ) : (
+                <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                    <View style={styles.container}>
+                        <Text style={styles.title}>Pequenos Tesouros</Text>
+                        <Text style={styles.subtitle}>
+                            Roupinhas cheias de amor e novas aventuras!
+                        </Text>
 
-                    <View style={styles.boxForms}>
-                        <View style={{ marginTop: 50 }} />
+                        <Image
+                            style={styles.logoImage}
+                            source={LogoImage}
+                            alt="Logo"
+                        />
 
                         <TextInputField
                             placeHolder="Digite seu email"
@@ -59,11 +70,22 @@ export const Login = () => {
                         <ButtonTypes
                             title="Login"
                             handleFunction={handleLogin}
-                            propsBackgroundColor="#fe4a49"
+                            propsBackgroundColor="#96ceb4"
                         />
+
+                        <TouchableOpacity
+                            onPress={() =>
+                                navigation.navigate("StackCadastroUsuario")
+                            }
+                        >
+                            <Text style={styles.signupText}>
+                                Ainda não tem cadastro?{" "}
+                                <Text style={styles.link}>Clique aqui.</Text>
+                            </Text>
+                        </TouchableOpacity>
                     </View>
-                </ImageBackground>
-            </View>
-        </TouchableWithoutFeedback>
+                </TouchableWithoutFeedback>
+            )}
+        </React.Fragment>
     );
 };
