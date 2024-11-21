@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 10,
         fontSize: 16,
         backgroundColor: "#f9f9f9",
+        paddingRight: 40,
     },
 
     boxIcon: {

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
 
     title: {
         fontSize: 40,
-        color: "#00000080",
+        color: "#7956a1",
         marginBottom: 10,
         marginTop: 40,
         fontWeight: "bold",
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
 
     subtitle: {
         fontSize: 20,
-        color: "#00000080",
+        color: "#7956a1",
         marginBottom: 24,
         marginTop: 0,
         fontWeight: "bold",
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     },
 
     link: {
-        color: "#96ceb4",
+        color: "#7956a1",
         fontWeight: "bold",
     },
 });

@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         marginVertical: 10,
         textAlign: "center",
-        color: "#00000080",
+        color: "#7956a1",
         marginTop: 50,
     },
 
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     },
 
     avatarSelected: {
-        borderColor: "#96ceb4",
-        borderWidth: 5,
+        borderColor: "#7956a1",
+        borderWidth: 4,
     },
 });
