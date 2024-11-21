@@ -12,7 +12,7 @@ export interface Postagem {
   categoriasIdade: string;
   preco: number;
   dataCriacao: string;
-  foto: PropsFoto[];
+  foto: Foto[];
   usuarioDTO: PropsUsuarioDTO;
 }
 
@@ -20,7 +20,11 @@ export interface ArrayPostagem {
   listaPostagem: Postagem[];
 }
 
-export interface PropsFoto {
+export interface PropsRow{
+  listaPostagem: Postagem[];
+  onRefreshing: () => void;
+}
+export interface Foto {
   id: number;
   dados: string;
 }
