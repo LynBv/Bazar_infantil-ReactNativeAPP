@@ -1,5 +1,6 @@
 import { Text, TouchableOpacity } from "react-native";
 import { styles } from "./style";
+import React from "react";
 
 function tiposGenericos<T>(args: T) {
     return args;

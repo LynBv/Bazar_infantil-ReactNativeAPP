@@ -2,6 +2,7 @@ import Icon from "@expo/vector-icons/Feather";
 import { useState } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
+import React from "react";
 
 export const TextInputField = ({
     placeHolder,
@@ -10,6 +11,7 @@ export const TextInputField = ({
     hadleFunctionInput,
     typeIcon,
 }: PropsInput) => {
+    
     const [viewPassword, setViewPassword] = useState<boolean>(false);
 
     return (
@@ -20,7 +22,7 @@ export const TextInputField = ({
                 placeholder={placeHolder}
                 placeholderTextColor="#00000080"
                 secureTextEntry={
-                    typeIcon === "password" ? viewPassword : typeInput
+                    typeIcon === "password" ? !viewPassword : typeInput
                 }
                 value={valueInput}
             />
