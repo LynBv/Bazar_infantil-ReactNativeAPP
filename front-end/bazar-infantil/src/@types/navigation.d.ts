@@ -1,10 +1,10 @@
-import { PropsSeeMore } from "../components/SeeMorePost/type"
+import { PropsPostagem } from "../components/FeedRow/type"
 
 export type PropsStack = {
     StackLogin: undefined,
     StackCadastroUsuario: undefined,
     StackFeed: undefined,
-    StackPostagem: {postagem: PropsSeeMore},
+    StackPostagem: {postagem: PropsPostagem},
   }
   
   export type PropsTabs = {

@@ -1,10 +1,8 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { styles } from "./style";
-import { PropsCard } from "./type";
 import IconM from '@expo/vector-icons/MaterialCommunityIcons';
 import { useNavigation } from "@react-navigation/native";
-import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { PropsPostagem } from "../FeedRow/type";
 
 const PostCard = ({ postagem }: PropsPostagem) => {
@@ -43,7 +41,7 @@ const PostCard = ({ postagem }: PropsPostagem) => {
         </TouchableOpacity>
         
       </View>
-      <Text style={[styles.descricao, styles.estiloTexto]}>{postagem.conteudo}</Text>
+      <Text style={[styles.descricao, styles.estiloTexto]}>{postagem.descricao}</Text>
       <TouchableOpacity style={styles.more} onPress={() => navigation.navigate("StackPostagem", {postagem: {postagem}})}>
         <Text style={[]}>VER MAIS DETALHES</Text>
         <IconM name="chevron-down" size={30} color="#4A4A4A" />
