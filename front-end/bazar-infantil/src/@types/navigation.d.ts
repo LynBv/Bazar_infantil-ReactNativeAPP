@@ -2,6 +2,7 @@ import { PropsSeeMore } from "../components/SeeMorePost/type"
 
 export type PropsStack = {
     StackLogin: undefined,
+    StackCadastroUsuario: undefined,
     StackFeed: undefined,
     StackPostagem: {postagem: PropsSeeMore},
   }

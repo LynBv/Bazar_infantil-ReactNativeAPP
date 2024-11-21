@@ -1,11 +1,8 @@
 package br.org.serratec.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -15,7 +12,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.org.serratec.security.JwtAuthenticationFilter;
 import br.org.serratec.security.JwtAuthorizationFilter;
@@ -35,14 +31,14 @@ public class ConfigSeguranca {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
 		.authorizeHttpRequests(authorize -> 
-	        authorize
-	            .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
+	        authorize.anyRequest().permitAll()
+	           /*  .requestMatchers(HttpMethod.POST, "/usuarios").permitAll()
 	            .requestMatchers(HttpMethod.POST, "/avatar").permitAll()
 	            .requestMatchers(HttpMethod.GET, "/avatar").permitAll()
 	            .requestMatchers(HttpMethod.PUT, "/avatar").permitAll()
 	            .requestMatchers(HttpMethod.DELETE, "/avatar").permitAll()
 	            .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()
-	            .anyRequest().authenticated()
+	            .anyRequest().authenticated() */
 	    )
 	    .httpBasic(Customizer.withDefaults())
 	    .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

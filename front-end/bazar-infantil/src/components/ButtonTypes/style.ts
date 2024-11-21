@@ -1,20 +1,20 @@
 import { Dimensions, Platform, StyleSheet } from "react-native";
 
-const {width} = Dimensions.get('window')
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
     styleButton: {
-        width: "100%",
-        height: Platform.OS === 'android' ? 60 : 100,
-        borderRadius: 5,
+        width: 150,
+        height: Platform.OS === "android" ? 50 : 90,
+        borderRadius: 25,
         alignItems: "center",
         justifyContent: "center",
-
+        marginTop: 40,
     },
 
     text: {
         color: "#fff",
         fontSize: width < 767 ? 20 : 50,
-        fontWeight: "bold"
+        fontWeight: "bold",
     },
 });
