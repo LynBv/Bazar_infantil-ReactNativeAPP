@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View } from "react-native";
 import React, { useEffect, useState } from "react";
 import FeedRow from "../../components/FeedRow";
 import SearchBarFedd from "../../components/SearchBarFeed";
@@ -8,9 +8,11 @@ import { Postagem } from "../../@types/apiTypes";
 
 export default function Feed() {
   const [postagens, setPostagens] = useState<Postagem[]>([]);
-  const [isSearching, setIsSerching] = useState<boolean>(false);
-  const [queryPostagens, setQueryPostagens] = useState<Postagem[]>([]);
   const [query, setQuery] = useState<string>("");
+
+  useEffect(() => {
+    LoadPostagens();
+  }, []);
 
   const LoadPostagens = async () => {
     const response = await ServiceGetPostagensFeed();
@@ -22,38 +24,15 @@ export default function Feed() {
     }
   };
 
-  const handleSearch = () => {
-    let queryUpcase = query.toUpperCase();
-
-    const newPostagem = postagens.filter((postagem) =>
-      postagem.usuarioDTO.nome.toUpperCase().includes(queryUpcase)
-    );
-
-    setQueryPostagens(newPostagem);
-  };
-
-  useEffect(() => {
-    LoadPostagens();
-  }, []);
-
-  useEffect(() => {
-    setIsSerching(true);
-
-    handleSearch();
-
-    if (query === "") {
-      setIsSerching(false);
-    }
-  }, [query]);
-
-  const showPostagens = () => {
-    return isSearching ? queryPostagens : postagens;
-  };
+  const postagensFiltradas = query === ""
+    ? postagens
+    : postagens.filter((postagem) =>
+        postagem.usuarioDTO.nome.toUpperCase().includes(query.toUpperCase())); 
 
   return (
     <View style={styles.container}>
       <SearchBarFedd inputValue={query} handleQuerry={setQuery} />
-      <FeedRow onRefreshing={LoadPostagens} listaPostagem={showPostagens()} />
+      <FeedRow onRefreshing={LoadPostagens} listaPostagem={postagensFiltradas} />
     </View>
   );
 }
