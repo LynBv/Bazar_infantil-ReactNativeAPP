@@ -5,7 +5,7 @@ import Feed from '../screens/Feed';
 import React from 'react';
 import {Postagem} from '../screens/Postagem';
 import CadastroUsuario from '../screens/CadastroUsuario';
-import React from 'react';
+
 
 const Stack = createNativeStackNavigator();
 

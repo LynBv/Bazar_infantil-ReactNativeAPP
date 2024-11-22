@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import {
     Image,
     Keyboard,
+    Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    View
+    View,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
-import { Text } from "react-native-elements";
 import LogoImage from "../../assets/logo/pequenos-tesouros-logo.png";
 import { ButtonTypes } from "../../components/ButtonTypes";
 import { Loading } from "../../components/Loading";
@@ -23,7 +23,12 @@ export const Login = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        checkAuthentication(email);
+        if (!email || !password) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+        console.log(email + " e " + password)
+        checkAuthentication(email, password);
     };
 
     const handlePassword = (value: string) => {
