@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     elevation: 20,
     shadowColor: "#4B92A7",
     padding: 10,
+    fontSize: 30
   },
 
   input: {
