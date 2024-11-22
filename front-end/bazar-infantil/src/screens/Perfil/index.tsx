@@ -17,7 +17,7 @@ export default function Perfil() {
   }, []);
 
   const LoadPostagens = async () => {
-    const response = await ServiceGetPostagensPerfil("");
+    const response = await ServiceGetPostagensPerfil(usuario.id.toString());
 
     if (response && response.status === 200) {
       setPostagens(response.data);

@@ -1,7 +1,6 @@
 package br.org.serratec.service;
 
 import java.time.LocalDate;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,13 +43,13 @@ public class PostagemService {
 		postagemRepository.deleteById(id);
 	}
 	
-//	public List<PostagemDTO> postPorUsuario(Long id){
-//		List<PostagemDTO> postagemDTO = new ArrayList<>();
-//		for (Postagem postagem : usuarioService.buscar(id).get().getPostagens()) {
-//			postagemDTO.add(new PostagemDTO(postagem));
-//		}
-//		return postagemDTO;
-//	}
+	public List<PostagemDTO> postsPorUsuario(Long id){
+		List<PostagemDTO> postagemDTO = new ArrayList<>();
+		for (Postagem postagem : usuarioService.buscar(id).get().getPostagens()) {
+			postagemDTO.add(new PostagemDTO(postagem));
+		}
+		return postagemDTO;
+	}
 	
 	public PostagemDTO inserirPost (PostagemInserirDTO postagemInserirDTO) {
 		Postagem postagem = new Postagem();
