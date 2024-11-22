@@ -23,11 +23,6 @@ export const Login = () => {
     const navigation = useNavigation();
 
     const handleLogin = () => {
-        if (!email || !password) {
-            alert("Por favor, preencha todos os campos.");
-            return;
-        }
-        console.log(email + " e " + password)
         checkAuthentication(email, password);
     };
 
