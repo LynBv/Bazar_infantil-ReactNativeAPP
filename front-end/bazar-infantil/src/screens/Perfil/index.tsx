@@ -9,7 +9,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 export default function Perfil() {
   const [postagens, setPostagens] = useState<Postagem[]>([]);
-  const { usuario } = useAuth();
+  const { usuario, handleLogOut } = useAuth();
 
   useEffect(() => {
     LoadPostagens();
@@ -27,7 +27,7 @@ export default function Perfil() {
 
   return (
     <View style={styles.container}>
-      <PerfilCard avatar={usuario.base64} nomeUsuario={usuario.nome}/>
+      <PerfilCard logout={handleLogOut} avatar={usuario.base64} nomeUsuario={usuario.nome}/>
       <FeedRow listaPostagem={postagens} onRefreshing={LoadPostagens}/>
     </View>
   );

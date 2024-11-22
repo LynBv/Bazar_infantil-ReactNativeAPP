@@ -63,6 +63,7 @@ export const AuthProvider = ({ children }: any) => {
       await AsyncStorage.removeItem("@userToken");
       await AsyncStorage.removeItem("@userData");
       navigation.navigate("StackLogin");
+      console.log("desloguei")
     } catch (error) {
       console.error("Erro ao deslogar:", error);
     }
