@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Login, PropsContext } from "./type";
+import { PropsContext, tokenType } from "./type";
 
 const AuthContext = createContext<PropsContext>({
     email: "",
@@ -14,10 +14,8 @@ const AuthContext = createContext<PropsContext>({
 
 export const AuthProvider = ({ children }: any) => {
     const navigation = useNavigation();
-
     const [email, setEmail] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [login, setLogin] = useState<Login>({ username: "", password: "" });
 
     const checkAuthentication = async (email: string, password: string) => {
         setIsLoading(true);
