@@ -1,7 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { PropsContext } from "./type";
+import { Login, PropsContext } from "./type";
 
 const AuthContext = createContext<PropsContext>({
     email: "",
@@ -16,22 +17,49 @@ export const AuthProvider = ({ children }: any) => {
 
     const [email, setEmail] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [login, setLogin] = useState<Login>({ username: "", password: "" });
 
-    const checkAuthentication = (email: string) => {
+    const checkAuthentication = async (email: string, password: string) => {
         setIsLoading(true);
+        setLogin({ username: email, password: password });
 
-        if (email === "") {
-            setTimeout(() => {
-                storeData(email);
+        console.log(login);
+
+        try {
+            const response = await axios.post(
+                "https://apirn-production.up.railway.app/usuario/login",
+                { username: email, password: password }
+                // { headers: { "Content-Type": "aplication/json" } }
+            );
+
+            const { token, usuario } = response.data;
+
+            if (token) {
+                await AsyncStorage.setItem("@userToken", token);
+                await AsyncStorage.setItem(
+                    "@userData",
+                    JSON.stringify(usuario)
+                );
                 navigation.navigate("StackFeed");
-                setIsLoading(false);
-            }, 3000);
+            } else {
+                alert("Email ou senha inválidos.");
+            }
+        } catch (error) {
+            console.error("Erro ao autenticar:", error);
+            alert("Erro ao autenticar. Verifique seus dados.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
-    const handleLogOut = () => {
-        AsyncStorage.removeItem("@InfoUser");
-        navigation.navigate("StackLogin");
+    const handleLogOut = async () => {
+        try {
+            await AsyncStorage.removeItem("@userToken");
+            await AsyncStorage.removeItem("@userData");
+            navigation.navigate("StackLogin");
+        } catch (error) {
+            console.error("Erro ao deslogar:", error);
+        }
     };
 
     const storeData = async (email: string) => {

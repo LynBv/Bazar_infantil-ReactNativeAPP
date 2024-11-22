@@ -2,9 +2,9 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     boxInput: {
-        width: 350,
+        width: 300,
         height: 50,
-        marginBottom: 15,
+        marginBottom: 10,
         overflow: "hidden",
     },
 
