@@ -40,7 +40,7 @@ const PostCard = ({ postagem }: PropsPostagem) => {
       <TouchableOpacity
         style={styles.more}
         onPress={() =>
-          navigation.navigate("StackPostagem", { postagem: { postagem } })
+          navigation.navigate("StackPostagem", { postagem: postagem  })
         }
       >
         <Text style={[]}>VER MAIS DETALHES</Text>
