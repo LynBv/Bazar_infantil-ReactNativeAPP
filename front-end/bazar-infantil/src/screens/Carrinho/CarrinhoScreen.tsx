@@ -15,7 +15,7 @@ const initialItems = [
 export default function Carrinho() {
   const [itensCarrinho, setItensCarrinho] = useState(initialItems);
   const route = useRoute<RouteProp<ParamsProps, "postagem">>();
-  const {postagem} = route.params;
+  const postagem = route.params?.postagem;
 
   // Função para remover item do carrinho
   const removerItem = (id: string) => {
