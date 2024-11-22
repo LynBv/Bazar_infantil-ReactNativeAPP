@@ -6,26 +6,21 @@ import { Image } from "react-native-elements";
 import { ButtonTypes } from "../../components/ButtonTypes";
 import { CustomTextInput } from "../../components/CustomTextImput";
 import { styles } from "./style";
-
-// const avatarOptions = [
-//     require("../../assets/avatar/avatar1.png"),
-//     require("../../assets/avatar/avatar2.png"),
-//     require("../../assets/avatar/avatar3.png"),
-//     require("../../assets/avatar/avatar4.png"),
-//     require("../../assets/avatar/avatar5.png"),
-//     require("../../assets/avatar/avatar6.png"),
-//     require("../../assets/avatar/avatar7.png"),
-//     require("../../assets/avatar/avatar8.png"),
-//     require("../../assets/avatar/avatar9.png"),
-// ];
+import { Avatar } from "./type";
 
 export default function CadastroUsuario() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
-    const [avatars, setAvatars] = useState<string[]>([]);
+    const [selectedAvatar, setSelectedAvatar] = useState<Avatar>({
+        id: 0,
+        dados: "",
+        tipo: "",
+        nome: "",
+    });
+    const [avatars, setAvatars] = useState<Avatar[]>([]);
+    const avatarImage = "data:image/png;base64,";
 
     const navigation = useNavigation();
 
@@ -33,7 +28,7 @@ export default function CadastroUsuario() {
         axios
             .get("https://apirn-production.up.railway.app/avatar")
             .then((response) => {
-                setAvatars(response.data); // Presume que response.data é uma lista de URLs de imagens
+                setAvatars(response.data);
             })
             .catch((error) => {
                 console.error("Erro ao buscar avatares:", error);
@@ -47,11 +42,15 @@ export default function CadastroUsuario() {
                 nome: name,
                 email: email,
                 senha: password,
+                confirmaSenha: password,
                 avatar: selectedAvatar,
             };
-    
+
             axios
-                .post("https://apirn-production.up.railway.app/usuarios", newUser)
+                .post(
+                    "https://apirn-production.up.railway.app/usuarios",
+                    newUser
+                )
                 .then(() => {
                     alert("Usuário cadastrado com sucesso!");
                     navigation.navigate("StackLogin");
@@ -101,7 +100,9 @@ export default function CadastroUsuario() {
                                 onPress={() => setSelectedAvatar(avatarUrl)}
                             >
                                 <Image
-                                    source={{ uri: avatarUrl }}
+                                    source={{
+                                        uri: `${avatarImage}${avatarUrl.dados}`,
+                                    }}
                                     style={[
                                         styles.avatarImage,
                                         selectedAvatar === avatarUrl &&

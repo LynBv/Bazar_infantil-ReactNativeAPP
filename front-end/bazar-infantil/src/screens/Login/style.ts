@@ -9,32 +9,31 @@ export const styles = StyleSheet.create({
     },
 
     title: {
-        fontSize: 40,
+        fontSize: 35,
         color: "#7956a1",
         marginBottom: 10,
-        marginTop: 40,
+        marginTop:30,
         fontWeight: "bold",
         textAlign: "center",
     },
 
     subtitle: {
-        fontSize: 20,
+        fontSize: 15,
         color: "#7956a1",
         marginBottom: 24,
-        marginTop: 0,
         fontWeight: "bold",
         textAlign: "center",
     },
 
     logoImage: {
         alignSelf: "center",
-        width: 250,
-        height: 250,
-        marginBottom: 40,
+        width: 230,
+        height: 230,
+        marginBottom: 20,
     },
 
     signupText: {
-        marginTop: 40,
+        marginTop: 30,
         fontSize: 14,
         textAlign: "center",
         color: "#555",

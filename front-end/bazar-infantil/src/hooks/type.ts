@@ -5,3 +5,8 @@ export interface PropsContext {
     handleLogOut: () => void;
     isLoading: boolean;
 }
+
+export interface Login {
+    username: string,
+    password: string
+}

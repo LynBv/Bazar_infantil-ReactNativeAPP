@@ -27,6 +27,7 @@ export const Login = () => {
             alert("Por favor, preencha todos os campos.");
             return;
         }
+        console.log(email + " e " + password)
         checkAuthentication(email, password);
     };
 
