@@ -5,6 +5,7 @@ export type PropsStack = {
     StackCadastroUsuario: undefined,
     StackFeed: undefined,
     StackPostagem: {postagem: PropsPostagem},
+    StackCarrinho: {postagem: PropsPostagem},
   }
   
   export type PropsTabs = {

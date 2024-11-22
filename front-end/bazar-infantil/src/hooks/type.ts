@@ -1,3 +1,5 @@
+import { AxiosHeaderValue } from "axios";
+
 export interface PropsContext {
     email: string;
     setEmail: (value: string) => void;
@@ -9,4 +11,8 @@ export interface PropsContext {
 export interface Login {
     username: string,
     password: string
+}
+
+export interface tokenType{
+    token: AxiosHeaderValue;
 }
