@@ -10,6 +10,7 @@ export const Postagem = () => {
   const postagem = route.params?.postagem;
 
   return (
+   
     <View style={styles.container}>
       <SeeMorePost postagem={postagem}/>
     </View>
