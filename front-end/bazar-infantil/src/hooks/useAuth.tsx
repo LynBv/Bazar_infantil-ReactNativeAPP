@@ -23,24 +23,17 @@ export const AuthProvider = ({ children }: any) => {
         try {
             const response = await axios.post(
                 "https://apirn-production.up.railway.app/login",
-                { 
-                  username: email,
-                  password: password,
-                },
-                 { headers: { "Content-Type": "aplication/json" } }
-            )
-                const token = response.headers['authorization']
-                
+                { username: email, password: password }
+            );
 
-            if (token) {
-                await AsyncStorage.setItem("@userToken", token);
-                await AsyncStorage.setItem(
-                    "@userData",
-                    JSON.stringify(usuario)
-                );
+            const { token, usuario } = response.data;
+
+            if (response.status === 200) {
                 navigation.navigate("StackFeed");
+                // console.log("token valido");
             } else {
                 alert("Email ou senha inválidos.");
+                console.log("Response", response.status);
             }
         } catch (error) {
             console.error("Erro ao autenticar:", error);
