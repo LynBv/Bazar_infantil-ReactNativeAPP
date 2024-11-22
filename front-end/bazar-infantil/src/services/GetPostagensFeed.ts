@@ -4,7 +4,7 @@ import axios, { AxiosError } from "axios";
 
 export const ServiceGetPostagensFeed = async () => {
   try {
-    const response = await axios.get("http://192.168.0.195:8080/postagem");
+    const response = await axios.get("http://apirn-production.up.railway.app/postagem");
     return response;
   } catch (error)
    {
