@@ -2,28 +2,34 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { PropsContext} from "./type";
+import { JWTtoken, PropsContext} from "./type";
+import { ServiceGetInfoUsuario } from "../services/GetInfoUsuarios";
+import { UsuarioDTO } from "../@types/apiTypes";
+import { jwtDecode} from "jwt-decode";
+
 
 const AuthContext = createContext<PropsContext>({
     email: "",
     setEmail: () => {},
     checkAuthentication: () => {},
     handleLogOut: () => {},
-    isLoading: false
+    isLoading: false,
+    usuario: {id: 0, nome: "", email: "", base64: ""}
 });
 
 export const AuthProvider = ({ children }: any) => {
     const navigation = useNavigation();
     const [email, setEmail] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [usuario, setUsuario] = useState<UsuarioDTO>({id: 0, nome: "", email: "", base64: ""});
 
     const checkAuthentication = async (email: string, password: string) => {
         setIsLoading(true);
 
         try {
             const response = await axios.post(
-                 "https://apirn-production.up.railway.app/login", 
-               /*  "http://192.168.0.195:8080/login", */
+                 /* "https://apirn-production.up.railway.app/login",  */
+                "http://192.168.0.195:8080/login",
                 { username: email, password: password }
             );
 
@@ -34,11 +40,13 @@ export const AuthProvider = ({ children }: any) => {
             if (token) {
                 await AsyncStorage.setItem("@userToken", token);
                 navigation.navigate("StackFeed");
-                // console.log("token valido");
+                const decoded: JWTtoken = jwtDecode(token);
+                pegarDadosUsuario(decoded.id.toString());
             } else {
                 alert("Email ou senha inválidos.");
                 console.log("Response", response.status);
             }
+
         } catch (error) {
             console.error("Erro ao autenticar:", error);
             alert("Erro ao autenticar. Verifique seus dados.");
@@ -81,6 +89,19 @@ export const AuthProvider = ({ children }: any) => {
         setIsLoading(false);
     };
 
+    const pegarDadosUsuario = async (idUsuario: string) => {
+
+        const response = await ServiceGetInfoUsuario(idUsuario);
+        
+        if (response && response.status === 200) {
+            setUsuario(response.data);
+            console.log(usuario.nome);
+            
+        } else {
+            console.error("nao conseguiu salvar usuario");
+        }
+    }
+
     useEffect(() => {
         getData();
     }, []);
@@ -92,7 +113,8 @@ export const AuthProvider = ({ children }: any) => {
                 setEmail,
                 checkAuthentication,
                 handleLogOut,
-                isLoading
+                isLoading,
+                usuario
             }}
         >
             {children}

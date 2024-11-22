@@ -5,13 +5,15 @@ import FeedRow from "../../components/FeedRow";
 import { styles } from "./style";
 import { Postagem } from "../../@types/apiTypes";
 import { ServiceGetPostagensPerfil } from "../../services/GetPostagensPerfil";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Perfil() {
   const [postagens, setPostagens] = useState<Postagem[]>([]);
+  const { usuario } = useAuth();
 
   useEffect(() => {
     LoadPostagens();
-    console.log("use effect do perfil")
   }, []);
 
   const LoadPostagens = async () => {
@@ -26,7 +28,7 @@ export default function Perfil() {
 
   return (
     <View style={styles.container}>
-      <PerfilCard />
+      <PerfilCard avatar={usuario.base64} nomeUsuario={usuario.nome}/>
       <FeedRow listaPostagem={postagens} onRefreshing={LoadPostagens}/>
     </View>
   );
