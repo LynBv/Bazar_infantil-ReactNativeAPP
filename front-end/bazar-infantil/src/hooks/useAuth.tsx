@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { PropsContext, tokenType } from "./type";
+import { PropsContext} from "./type";
 
 const AuthContext = createContext<PropsContext>({
     email: "",
@@ -27,9 +27,12 @@ export const AuthProvider = ({ children }: any) => {
                 { username: email, password: password }
             );
 
-            const { token, usuario } = response.data;
+            const authorization = response.headers['authorization'];
+            const token = authorization.split(' ')[1];
+            
 
-            if (response.status === 200) {
+            if (token) {
+                await AsyncStorage.setItem("@userToken", token);
                 navigation.navigate("StackFeed");
                 // console.log("token valido");
             } else {
