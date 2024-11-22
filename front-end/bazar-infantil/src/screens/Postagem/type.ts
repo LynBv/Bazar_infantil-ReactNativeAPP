@@ -1,7 +1,5 @@
-import { PropsSeeMore } from "../../components/SeeMorePost/type"
+import { PropsPostagem } from "../../components/FeedRow/type";
 
 export type ParamsProps ={
-    postagem:{
-        postagem: PropsSeeMore;
-    };
+    postagem: PropsPostagem;
 };

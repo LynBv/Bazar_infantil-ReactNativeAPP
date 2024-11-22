@@ -2,7 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Login, PropsContext } from "./type";
+import { PropsContext, tokenType } from "./type";
 
 const AuthContext = createContext<PropsContext>({
     email: "",
@@ -14,35 +14,26 @@ const AuthContext = createContext<PropsContext>({
 
 export const AuthProvider = ({ children }: any) => {
     const navigation = useNavigation();
-
     const [email, setEmail] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [login, setLogin] = useState<Login>({ username: "", password: "" });
 
     const checkAuthentication = async (email: string, password: string) => {
         setIsLoading(true);
-        setLogin({ username: email, password: password });
-
-        console.log(login);
 
         try {
             const response = await axios.post(
-                "https://apirn-production.up.railway.app/usuario/login",
+                "https://apirn-production.up.railway.app/login",
                 { username: email, password: password }
-                // { headers: { "Content-Type": "aplication/json" } }
             );
 
             const { token, usuario } = response.data;
 
-            if (token) {
-                await AsyncStorage.setItem("@userToken", token);
-                await AsyncStorage.setItem(
-                    "@userData",
-                    JSON.stringify(usuario)
-                );
+            if (response.status === 200) {
                 navigation.navigate("StackFeed");
+                // console.log("token valido");
             } else {
                 alert("Email ou senha inválidos.");
+                console.log("Response", response.status);
             }
         } catch (error) {
             console.error("Erro ao autenticar:", error);
