@@ -9,7 +9,7 @@ const AuthContext = createContext<PropsContext>({
     setEmail: () => {},
     checkAuthentication: () => {},
     handleLogOut: () => {},
-    isLoading: false,
+    isLoading: false
 });
 
 export const AuthProvider = ({ children }: any) => {
@@ -89,7 +89,7 @@ export const AuthProvider = ({ children }: any) => {
                 setEmail,
                 checkAuthentication,
                 handleLogOut,
-                isLoading,
+                isLoading
             }}
         >
             {children}
