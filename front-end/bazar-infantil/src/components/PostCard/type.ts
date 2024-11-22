@@ -1,3 +1,7 @@
-import { ImageSourcePropType } from "react-native";
+import { Postagem } from "../../@types/apiTypes";
 
 
+export interface PropsPostagem {
+    postagem: Postagem;
+  }
+  

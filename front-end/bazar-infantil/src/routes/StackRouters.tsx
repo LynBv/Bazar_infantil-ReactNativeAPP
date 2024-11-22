@@ -1,12 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Login } from '../screens/Login';
 import { TabRouters } from './BottonTabs';
-import Feed from '../screens/Feed';
 import React from 'react';
 import {Postagem} from '../screens/Postagem';
 import CadastroUsuario from '../screens/CadastroUsuario';
 import Carrinho from '../screens/Carrinho/CarrinhoScreen';
-
 
 const Stack = createNativeStackNavigator();
 

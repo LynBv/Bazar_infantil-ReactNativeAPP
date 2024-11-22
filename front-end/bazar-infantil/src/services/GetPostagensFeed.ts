@@ -1,7 +1,5 @@
 import axios, { AxiosError } from "axios";
 
-/* const url = axios.create({baseURL :"http://localhost:8080/postagem"}) */
-
 export const ServiceGetPostagensFeed = async () => {
   try {
     const response = await axios.get("http://apirn-production.up.railway.app/postagem");

@@ -78,9 +78,14 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
   },
 
-  descricao: {
+  titulo:{
     fontSize: 18,
     fontWeight: 500
+  },
+
+  descricao: {
+    fontSize: 15,
+    fontWeight: 300
   },
 
   more: {

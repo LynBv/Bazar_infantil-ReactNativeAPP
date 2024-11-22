@@ -1,9 +1,9 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { styles } from "./style";
-import IconM from '@expo/vector-icons/MaterialCommunityIcons';
+import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
-import { PropsPostagem } from "../FeedRow/type";
+import { PropsPostagem } from "./type";
 
 const PostCard = ({ postagem }: PropsPostagem) => {
   const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
@@ -11,9 +11,7 @@ const PostCard = ({ postagem }: PropsPostagem) => {
   const navigation = useNavigation();
 
   return (
-
     <View style={styles.card}>
-
       <View style={styles.infoUser}>
         <Image source={{ uri: avatarImage }} style={styles.avatar} />
         <Text style={[styles.nomeUsuario, styles.estiloTexto]}>
@@ -24,29 +22,30 @@ const PostCard = ({ postagem }: PropsPostagem) => {
       <Image source={{ uri: postImage }} style={styles.postImg} />
 
       <View style={styles.descricaoCard}>
-      
-      <Text style={[styles.descricao, styles.estiloTexto]}>
-        {postagem.titulo}
-      </Text>
+        <Text style={[styles.titulo, styles.estiloTexto]}>
+          {postagem.titulo}
+        </Text>
       </View>
 
       <View style={styles.infoCompra}>
-
         <View style={styles.precoCard}>
           <Text style={styles.preco}>{`R$${postagem.preco}`}</Text>
         </View>
 
-        <TouchableOpacity >
-        <IconM name="cart-arrow-down" size={45} color="#96CEB4" />
+        <TouchableOpacity>
+          <IconM name="cart-arrow-down" size={45} color="#96CEB4" />
         </TouchableOpacity>
-        
       </View>
-      <Text style={[styles.descricao, styles.estiloTexto]}>{postagem.descricao}</Text>
-      <TouchableOpacity style={styles.more} onPress={() => navigation.navigate("StackPostagem", {postagem: {postagem}})}>
+
+      <TouchableOpacity
+        style={styles.more}
+        onPress={() =>
+          navigation.navigate("StackPostagem", { postagem: { postagem } })
+        }
+      >
         <Text style={[]}>VER MAIS DETALHES</Text>
         <IconM name="chevron-down" size={30} color="#4A4A4A" />
       </TouchableOpacity>
-
     </View>
   );
 };
