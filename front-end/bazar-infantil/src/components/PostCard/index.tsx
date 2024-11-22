@@ -42,7 +42,7 @@ const PostCard = ({ postagem }: PropsPostagem) => {
         
       </View>
       <Text style={[styles.descricao, styles.estiloTexto]}>{postagem.descricao}</Text>
-      <TouchableOpacity style={styles.more} onPress={() => navigation.navigate("StackPostagem", {postagem: {postagem}})}>
+      <TouchableOpacity style={styles.more} onPress={() => navigation.navigate("StackPostagem", {postagem: postagem})}>
         <Text style={[]}>VER MAIS DETALHES</Text>
         <IconM name="chevron-down" size={30} color="#4A4A4A" />
       </TouchableOpacity>

@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: any) => {
 
         try {
             const response = await axios.post(
-                "https://apirn-production.up.railway.app/login",
+                "http://192.168.18.3:8080/login",
                 { username: email, password: password }
             );
 

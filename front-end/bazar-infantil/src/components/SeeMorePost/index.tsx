@@ -5,9 +5,9 @@ import { PropsPostagem } from "../FeedRow/type";
 import { ButtonTypes } from "../ButtonTypes";
 import { useNavigation } from "@react-navigation/native";
 
-export const SeeMorePost = ({ postagem }: PropsPostagem ) => {
-  const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
-  const postImage = "data:image/png;base64," + postagem.foto[0].dados;
+export const SeeMorePost = ({ postagem }: {postagem: PropsPostagem} ) => {
+  const avatarImage = postagem?.postagem.usuarioDTO?.base64 ? "data:image/png;base64," + postagem.postagem.usuarioDTO.base64 : null;
+  const postImage = postagem?.postagem.foto[0]?.dados ? "data:image/png;base64," + postagem.postagem.foto[0].dados : null;
 
   const navigation = useNavigation();
 
@@ -23,23 +23,23 @@ export const SeeMorePost = ({ postagem }: PropsPostagem ) => {
     <>
       <ScrollView style={styles.container}>
         <View style={styles.ownerInfo}>
-          <Image source={{ uri: avatarImage }} style={styles.ownerAvatar} />
+          {avatarImage && <Image source={{ uri: avatarImage }} style={styles.ownerAvatar} />}
           <Text style={styles.ownerName}>
-            {postagem.usuarioDTO.nome}
+            {postagem.postagem.usuarioDTO.nome}
           </Text>
         </View>
         <View style={styles.postInfo}>
-          <Text style={styles.postTitle}>{postagem.titulo}</Text>
-          <Image source={{ uri: postImage }} style={styles.postPhoto} />
+          <Text style={styles.postTitle}>{postagem.postagem.titulo}</Text>
+          {postImage && <Image source={{ uri: postImage }} style={styles.postPhoto} />}
           <Text style={styles.postDescricao}>
-            {postagem.descricao}
+            {postagem.postagem.descricao}
           </Text>
           <View style={styles.postSmallDetails}>
-            <Text style={styles.postCateg}>{postagem.categoriasGenero}</Text>
-            <Text style={styles.postCateg}>{postagem.categoriasIdade}</Text>
-            <Text style={styles.postData}>{postagem.dataCriacao}</Text>
+            <Text style={styles.postCateg}>{postagem.postagem.categoriasGenero}</Text>
+            <Text style={styles.postCateg}>{postagem.postagem.categoriasIdade}</Text>
+            <Text style={styles.postData}>{postagem.postagem.dataCriacao}</Text>
           </View>
-          <Text style={styles.postPreco}>R$ {postagem.preco}</Text>
+          <Text style={styles.postPreco}>R$ {postagem.postagem.preco}</Text>
         </View>
         <View>
           <ButtonTypes

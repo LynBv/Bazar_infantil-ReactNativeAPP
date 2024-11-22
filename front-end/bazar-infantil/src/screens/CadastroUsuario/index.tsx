@@ -26,7 +26,7 @@ export default function CadastroUsuario() {
 
     useEffect(() => {
         axios
-            .get("https://apirn-production.up.railway.app/avatar")
+            .get("http://192.168.18.3:8080/avatar")
             .then((response) => {
                 setAvatars(response.data);
             })

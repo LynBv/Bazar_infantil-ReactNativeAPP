@@ -7,7 +7,8 @@ import { ParamsProps } from './type'
 
 export const Postagem = () => {
   const route = useRoute<RouteProp<ParamsProps, "postagem">>();
-  const postagem = route.params?.postagem;
+  const postagem = route.params;
+  
 
   return (
     <View style={styles.container}>

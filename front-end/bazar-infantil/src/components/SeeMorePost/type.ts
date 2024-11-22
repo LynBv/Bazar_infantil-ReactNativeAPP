@@ -1,12 +1,7 @@
 import { ImageSourcePropType } from "react-native";
+import { Foto, PropsUsuarioDTO } from "../FeedRow/type";
+import { ParamsProps } from "../../screens/Postagem/type";
 
 export interface PropsSeeMore {
-    postagem: {
-      nomeUsuario: string;
-      conteudo: string;
-      fotoUsuario: ImageSourcePropType;
-      fotoPostagem: ImageSourcePropType;
-      preco: number;
-      dataPostagem: string;
-    };
+  postagem: ParamsProps
 }
