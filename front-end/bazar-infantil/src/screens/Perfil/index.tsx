@@ -5,7 +5,6 @@ import FeedRow from "../../components/FeedRow";
 import { styles } from "./style";
 import { Postagem } from "../../@types/apiTypes";
 import { ServiceGetPostagensPerfil } from "../../services/GetPostagensPerfil";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../../hooks/useAuth";
 
 export default function Perfil() {
