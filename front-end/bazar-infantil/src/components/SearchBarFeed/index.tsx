@@ -13,7 +13,7 @@ const SearchBarFedd = ({ handleQuerry, inputValue }: PropsSearchBar) => {
         value={inputValue}
         onChangeText={(t) => handleQuerry(t)}
       />
-      <IconM name="magnify" size={30} color="#000" />
+      <IconM name="magnify" size={30} color="#4A4A4A" />
     </View>
   );
 };

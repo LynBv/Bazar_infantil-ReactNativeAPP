@@ -14,4 +14,5 @@ export const Postagem = () => {
       <SeeMorePost postagem={postagem}/>
     </View>
   )
+  
 }

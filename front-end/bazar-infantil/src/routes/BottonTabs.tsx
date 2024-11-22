@@ -8,6 +8,7 @@ import { Login } from "../screens/Login";
 import Exemplo from "../screens/Exemplo";
 import React from "react";
 import Carrinho from "../screens/Carrinho/CarrinhoScreen";
+import Perfil from "../screens/Perfil";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,6 +20,7 @@ export const TabRouters = () => {
         tabBarStyle: {
           backgroundColor: "#fff",
           height: 50,
+          alignItems: "center",
         },
       }}
     >
@@ -60,6 +62,21 @@ export const TabRouters = () => {
             <View style={styles.boxTabBar}>
               <IconM
                 name="cart"
+                size={focused ? 30 : size}
+                color={focused ? "#88d8b0" : "gray"}
+              />
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="TabsPerfil"
+        component={Perfil}
+        options={{
+          tabBarIcon: ({ focused, size }) => (
+            <View style={styles.boxTabBar}>
+              <IconM
+                name="account"
                 size={focused ? 30 : size}
                 color={focused ? "#88d8b0" : "gray"}
               />
