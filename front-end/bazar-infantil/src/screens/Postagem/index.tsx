@@ -11,8 +11,10 @@ export const Postagem = () => {
   
 
   return (
+   
     <View style={styles.container}>
       <SeeMorePost postagem={postagem}/>
     </View>
   )
+  
 }

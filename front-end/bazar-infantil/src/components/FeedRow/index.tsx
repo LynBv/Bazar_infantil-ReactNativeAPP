@@ -2,7 +2,7 @@ import { View, Text, FlatList, RefreshControl } from "react-native";
 import { useState } from "react";
 import PostCard from "../PostCard";
 import { styles } from "./style";
-import { ArrayPostagem, PropsRow } from "./type";
+import { PropsRow } from "./type";
 import React from 'react';
 
 const FeedRow = ({ listaPostagem, onRefreshing }: PropsRow) => {

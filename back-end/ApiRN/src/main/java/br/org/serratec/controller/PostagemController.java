@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -22,6 +23,7 @@ import br.org.serratec.dto.PostagemDTO;
 import br.org.serratec.dto.PostagemInserirDTO;
 import br.org.serratec.service.PostagemService;
 import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/postagem")
@@ -33,6 +35,25 @@ public class PostagemController {
 	@GetMapping
 	public ResponseEntity<List<PostagemDTO>> listar(){
 		return ResponseEntity.ok(postagemService.listar());
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<PostagemDTO> buscar(@PathVariable Long id){
+		Optional<Postagem> postagemOpt = postagemService.buscar(id);
+		if (postagemOpt.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(new PostagemDTO(postagemOpt.get()));
+	}
+
+	@GetMapping("/usuario/{id}")
+	public ResponseEntity<List<PostagemDTO>> postsPorUsuario(@PathVariable Long id){
+		
+		return ResponseEntity.ok(postagemService.postsPorUsuario(id));
+		
+	}
+	public String getMethodName(@RequestParam String param) {
+		return new String();
 	}
 	
 	@PostMapping(consumes = {"multipart/form-data"})

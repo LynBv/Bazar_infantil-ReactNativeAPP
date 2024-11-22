@@ -26,7 +26,10 @@ export default function CadastroUsuario() {
 
     useEffect(() => {
         axios
-            .get("http://192.168.18.3:8080/avatar")
+            .get(
+                "https://apirn-production.up.railway.app/avatar"
+               /*  "http://192.168.0.195:8080/avatar" */
+            )
             .then((response) => {
                 setAvatars(response.data);
             })
@@ -48,7 +51,8 @@ export default function CadastroUsuario() {
 
             axios
                 .post(
-                    "https://apirn-production.up.railway.app/usuarios",
+                    /* "https://apirn-production.up.railway.app/usuarios", */
+                    "http://192.168.0.195:8080/usuarios",
                     newUser
                 )
                 .then(() => {
