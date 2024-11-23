@@ -1,27 +1,143 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
+import axios, { AxiosError } from 'axios'; 
+import styles from './styles';
+import * as ImagePicker from 'expo-image-picker';
+import SelectDropdown from 'react-native-select-dropdown';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CreatePostScreen = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [size, setSize] = useState('');
+  const [gender, setGender] = useState<string>('');  
+  const [age, setAge] = useState<string>('');  
   const [price, setPrice] = useState('');
+  const [image, setImage] = useState<File | null>(null);
+  const [imagem, setImagem] = useState<{ uri: string, name: string, type: string }>();
 
-  const handlePost = () => {
-    
-    alert('Postagem criada com sucesso!');
+
+ 
+  const genderOptions = [
+    { title: 'MASCULINO' },
+    { title: 'FEMININO' },
+    { title: 'UNISSEX' }
+  ];
+
+  const ageOptions = [
+    { title: 'MESES0A3' },
+    { title: 'MESES3A6' },
+    { title: 'MESES6A9' },
+    { title: 'MESES9A12' },
+    { title: 'MESES12A18' },
+    { title: 'ANO1' },
+    { title: 'ANOS2' },
+    { title: 'ANOS4' },
+    { title: 'ANOS6' },
+    { title: 'ANOS8' },
+    { title: 'ANOS10' },
+    { title: 'ANOS12' },
+    { title: 'ANOS14' }
+  ];
+
+  
+
+  
+
+  const pickImage = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permissionResult.granted) {
+      Alert.alert('Permissão necessária', 'Precisamos de acesso à galeria para carregar a imagem.');
+      return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const fileUri = result.assets[0].uri;
+      
+      // Converte o URI da imagem para um objeto File
+      const response = await fetch(fileUri);
+      const blob = await response.blob();
+      
+      // Obtém a extensão do arquivo
+      const fileExtension = fileUri.split('.').pop();
+      const fileType = `image/${fileExtension}`;
+  
+      // Criação do objeto File
+      const imageFile = new File([blob], `image.${fileExtension}`, {
+        type: fileType,
+      });
+  
+      setImage(imageFile);
+      setImagem({
+        uri: fileUri,
+        name: `image.${fileExtension}`,
+        type: fileType,
+      }) // Salva o arquivo de imagem no estado
+    }
   };
+
+  
+  const handlePost = async () => {
+    if (!title || !description || !gender || !age || !price || !image) {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos!');
+      return;
+    }
+    
+    const token = await AsyncStorage.getItem("@userToken")
+   
+
+
+
+    const data = {
+      titulo: title,
+      descricao: description,
+      categoriasGenero: gender,
+      categoriaIdade: age,
+      preco: price,
+      fotos: image, 
+    };
+
+    try {
+      const response = await axios.post('http://192.168.0.12:8080/postagem', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`   ,
+        },
+      });
+
+      if (response.status === 201) {
+        Alert.alert('Sucesso', 'Postagem criada com sucesso!');
+      } else {
+        Alert.alert('Erro', 'Falha ao criar a postagem.');
+      }
+    } catch (error) {
+      const axiosError = error as AxiosError
+      console.error(axiosError.stack + " ");
+      Alert.alert('Erro', 'Erro ao enviar a postagem');
+    }
+  };
+
+
+
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Criar Postagem</Text>
 
-     
-      <TouchableOpacity style={styles.uploadArea}>
-        <Text style={styles.uploadText}>Carregar Imagem</Text>
+      <TouchableOpacity style={styles.uploadArea} onPress={pickImage}>
+        {imagem ? (
+          <Image source={{ uri: imagem.uri}} style={styles.image} />
+        ) : (
+          <Text style={styles.uploadText}>Carregar Imagem</Text>
+        )}
       </TouchableOpacity>
 
-    
       <TextInput
         style={styles.input}
         placeholder="Título"
@@ -29,8 +145,6 @@ const CreatePostScreen = () => {
         value={title}
         onChangeText={setTitle}
       />
-
-  
       <TextInput
         style={[styles.input, styles.textArea]}
         placeholder="Descrição"
@@ -40,16 +154,63 @@ const CreatePostScreen = () => {
         multiline
       />
 
-   
-      <TextInput
-        style={styles.input}
-        placeholder="Categoria"
-        placeholderTextColor="#A8A8A8"
-        value={size}
-        onChangeText={setSize}
+    
+      <SelectDropdown
+        data={genderOptions}
+        onSelect={(selectedItem, index) => {
+          console.log(selectedItem, index);
+          setGender(selectedItem.title);  
+        }}
+        renderButton={(selectedItem, isOpened) => {
+          return (
+            <View style={styles.dropdownButtonStyle}>
+              <Text style={styles.dropdownButtonTxtStyle}>
+                {(selectedItem && selectedItem.title) || 'Selecione o Gênero'}
+              </Text>
+            </View>
+          );
+        }}
+        renderItem={(item, index, isSelected) => {
+          return (
+            <View style={{...styles.dropdownItemStyle, ...(isSelected && {backgroundColor: '#D2D9DF'})}}>
+              <Text style={styles.dropdownItemTxtStyle}>{item.title}</Text>
+            </View>
+          );
+        }}
+        showsVerticalScrollIndicator={false}
+        dropdownStyle={styles.dropdownMenuStyle}
       />
 
-  
+      
+      <SelectDropdown
+        data={ageOptions}
+        onSelect={(selectedItem, index) => {
+          console.log(selectedItem, index);
+          setAge(selectedItem.title);  
+        }}
+        renderButton={(selectedItem, isOpened) => {
+          return (
+            <View style={styles.dropdownButtonStyle}>
+              <Text style={styles.dropdownButtonTxtStyle}>
+                {(selectedItem && selectedItem.title) || 'Selecione a Faixa Etária'}
+              </Text>
+            </View>
+          );
+        }}
+        renderItem={(item, index, isSelected) => {
+          return (
+            <View style={{...styles.dropdownItemStyle, ...(isSelected && {backgroundColor: '#D2D9DF'})}}>
+              <Text style={styles.dropdownItemTxtStyle}>{item.title}</Text>
+            </View>
+          );
+        }}
+        showsVerticalScrollIndicator={false}
+        dropdownStyle={styles.dropdownMenuStyle}
+      />
+
+      
+
+
       <TextInput
         style={styles.input}
         placeholder="Preço (R$)"
@@ -59,85 +220,16 @@ const CreatePostScreen = () => {
         onChangeText={setPrice}
       />
 
-  
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={[styles.button, styles.previewButton]}>
-          <Text style={styles.buttonText}>Pré-visualizar</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[styles.button, styles.postButton]} onPress={handlePost}>
+        <TouchableOpacity style={[styles.button, styles.previewButton]} onPress={handlePost}>
           <Text style={styles.buttonText}>Postar</Text>
         </TouchableOpacity>
       </View>
+
+
+
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    backgroundColor: '	#b4dfff',
-    padding: 20,
-    alignItems: 'center',
-  },
-  header: {
-    marginTop: 28,
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#4A4A4A',
-    marginBottom: 20,
-  },
-  uploadArea: {
-    width: '100%',
-    height: 150,
-    backgroundColor: '#E5F0F8',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  uploadText: {
-    fontSize: 16,
-    color: '#7BAEDC',
-  },
-  input: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#F7F7F7',
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    marginBottom: 15,
-    color: '#4A4A4A',
-  },
-  textArea: {
-    height: 100,
-    textAlignVertical: 'top',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    marginTop: 20,
-  },
-  button: {
-    flex: 1,
-    height: 50,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginHorizontal: 5,
-  },
-  previewButton: {
-    backgroundColor: "#ffa3bf",
-  },
-  postButton: {
-    backgroundColor: '#B3E5C1',
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#4A4A4A',
-  },
-});
 
 export default CreatePostScreen;

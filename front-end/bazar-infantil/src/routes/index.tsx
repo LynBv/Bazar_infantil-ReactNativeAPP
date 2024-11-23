@@ -8,8 +8,8 @@ export const Routers = () => {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <StackRouters />
-        </AuthProvider>
+          <StackRouters />
+      </AuthProvider>
     </NavigationContainer>
   )
 }
