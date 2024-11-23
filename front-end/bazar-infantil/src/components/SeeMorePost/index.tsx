@@ -1,9 +1,9 @@
 import { Image, ScrollView, Text, View } from "react-native";
 import { styles } from "./style";
 import React from "react";
-import { PropsPostagem } from "../FeedRow/type";
 import { ButtonTypes } from "../ButtonTypes";
 import { useNavigation } from "@react-navigation/native";
+import { PropsPostagem } from "../PostCard/type";
 
 export const SeeMorePost = ({ postagem }: {postagem: PropsPostagem} ) => {
   const avatarImage = postagem?.postagem.usuarioDTO?.base64 ? "data:image/png;base64," + postagem.postagem.usuarioDTO.base64 : null;
