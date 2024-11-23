@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
   pickerContainer: {
     width: '100%',
     marginBottom: 15,
-    zIndex: 10, // Para garantir que o picker fique acima de outros elementos
-    backgroundColor: '#F7F7F7', // Para deixar o fundo do picker consistente com o layout
+    zIndex: 10, 
+    backgroundColor: '#F7F7F7', 
     borderRadius: 10,
   },
 
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F7F7',
     borderRadius: 10,
     fontSize: 16,
-    color: '#4A4A4A', // Cor do texto do Picker
+    color: '#4A4A4A', 
   },
 
   removeImageButton: {
@@ -102,23 +102,23 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
-  // Estilo do botão do SelectDropdown, agora padronizado com o TextInput
+  
   dropdownButtonStyle: {
     width: '100%',
     height: 50,
-    backgroundColor: '#F7F7F7', // Fundo igual ao do input
-    borderRadius: 10, // Arredondado igual ao do input
+    backgroundColor: '#F7F7F7',
+    borderRadius: 10, 
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 15, // Adicionando padding igual ao input
-    marginBottom: 15, // Para dar um espaçamento entre os dropdowns
+    paddingHorizontal: 15, 
+    marginBottom: 15, 
   },
 
   dropdownButtonTxtStyle: {
-    fontSize: 16, // Fonte igual ao do input
+    fontSize: 16, 
     fontWeight: '500',
-    color: '#4A4A4A', // Cor do texto igual ao do input
+    color: '#4A4A4A', 
   },
 
   dropdownButtonArrowStyle: {
@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
   },
 
   dropdownMenuStyle: {
-    backgroundColor: '#F7F7F7', // Fundo igual ao do input
-    borderRadius: 10, // Arredondado igual ao do input
+    backgroundColor: '#F7F7F7',
+    borderRadius: 10, 
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   },
 
   dropdownItemTxtStyle: {
-    fontSize: 16, // Fonte igual ao do input
+    fontSize: 16, 
     fontWeight: '500',
     color: '#4A4A4A',
   },

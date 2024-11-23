@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, Alert } from 'react-native';
-import axios from 'axios'; 
+import axios, { AxiosError } from 'axios'; 
 import styles from './styles';
 import * as ImagePicker from 'expo-image-picker';
 import SelectDropdown from 'react-native-select-dropdown';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CreatePostScreen = () => {
   const [title, setTitle] = useState('');
@@ -11,31 +12,36 @@ const CreatePostScreen = () => {
   const [gender, setGender] = useState<string>('');  
   const [age, setAge] = useState<string>('');  
   const [price, setPrice] = useState('');
-  const [image, setImage] = useState<string | null>(null);
-  
-  // Opções para o SelectDropdown de Gênero
+  const [image, setImage] = useState<File | null>(null);
+  const [imagem, setImagem] = useState<{ uri: string, name: string, type: string }>();
+
+
+ 
   const genderOptions = [
-    { title: 'Masculino' },
-    { title: 'Feminino' },
-    { title: 'Unissex' }
+    { title: 'MASCULINO' },
+    { title: 'FEMININO' },
+    { title: 'UNISSEX' }
   ];
 
-  // Substituição das opções de idade com os intervalos de meses e anos
   const ageOptions = [
-    { title: '0 a 3 meses' },
-    { title: '3 a 6 meses' },
-    { title: '6 a 9 meses' },
-    { title: '9 a 12 meses' },
-    { title: '12 a 18 meses' },
-    { title: '1 ano' },
-    { title: '2 anos' },
-    { title: '4 anos' },
-    { title: '6 anos' },
-    { title: '8 anos' },
-    { title: '10 anos' },
-    { title: '12 anos' },
-    { title: '14 anos' }
+    { title: 'MESES0A3' },
+    { title: 'MESES3A6' },
+    { title: 'MESES6A9' },
+    { title: 'MESES9A12' },
+    { title: 'MESES12A18' },
+    { title: 'ANO1' },
+    { title: 'ANOS2' },
+    { title: 'ANOS4' },
+    { title: 'ANOS6' },
+    { title: 'ANOS8' },
+    { title: 'ANOS10' },
+    { title: 'ANOS12' },
+    { title: 'ANOS14' }
   ];
+
+  
+
+  
 
   const pickImage = async () => {
     const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -51,50 +57,82 @@ const CreatePostScreen = () => {
     });
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      const fileUri = result.assets[0].uri;
+      
+      // Converte o URI da imagem para um objeto File
+      const response = await fetch(fileUri);
+      const blob = await response.blob();
+      
+      // Obtém a extensão do arquivo
+      const fileExtension = fileUri.split('.').pop();
+      const fileType = `image/${fileExtension}`;
+  
+      // Criação do objeto File
+      const imageFile = new File([blob], `image.${fileExtension}`, {
+        type: fileType,
+      });
+  
+      setImage(imageFile);
+      setImagem({
+        uri: fileUri,
+        name: `image.${fileExtension}`,
+        type: fileType,
+      }) // Salva o arquivo de imagem no estado
     }
   };
 
+  
   const handlePost = async () => {
     if (!title || !description || !gender || !age || !price || !image) {
       Alert.alert('Erro', 'Por favor, preencha todos os campos!');
       return;
     }
+    
+    const token = await AsyncStorage.getItem("@userToken")
+   
+
+
 
     const data = {
-      title: title,
-      description: description,
-      gender: gender,
-      age: age,
-      price: price,
-      image: image, 
+      titulo: title,
+      descricao: description,
+      categoriasGenero: gender,
+      categoriaIdade: age,
+      preco: price,
+      fotos: image, 
     };
 
     try {
-      const response = await axios.post('https://localhost:8080/postagem', data, {
+      const response = await axios.post('http://192.168.0.12:8080/postagem', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`   ,
         },
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         Alert.alert('Sucesso', 'Postagem criada com sucesso!');
       } else {
         Alert.alert('Erro', 'Falha ao criar a postagem.');
       }
     } catch (error) {
-      console.error(error);
+      const axiosError = error as AxiosError
+      console.error(axiosError.stack + " ");
       Alert.alert('Erro', 'Erro ao enviar a postagem');
     }
   };
+
+
+
+
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.header}>Criar Postagem</Text>
 
       <TouchableOpacity style={styles.uploadArea} onPress={pickImage}>
-        {image ? (
-          <Image source={{ uri: image }} style={styles.image} />
+        {imagem ? (
+          <Image source={{ uri: imagem.uri}} style={styles.image} />
         ) : (
           <Text style={styles.uploadText}>Carregar Imagem</Text>
         )}
@@ -116,12 +154,12 @@ const CreatePostScreen = () => {
         multiline
       />
 
-      {/* Dropdown de Gênero com as opções Masculino, Feminino e Unissex */}
+    
       <SelectDropdown
         data={genderOptions}
         onSelect={(selectedItem, index) => {
           console.log(selectedItem, index);
-          setGender(selectedItem.title);  // Atualiza o estado do gênero
+          setGender(selectedItem.title);  
         }}
         renderButton={(selectedItem, isOpened) => {
           return (
@@ -143,12 +181,12 @@ const CreatePostScreen = () => {
         dropdownStyle={styles.dropdownMenuStyle}
       />
 
-      {/* Dropdown de Faixa Etária com as novas opções de idade */}
+      
       <SelectDropdown
         data={ageOptions}
         onSelect={(selectedItem, index) => {
           console.log(selectedItem, index);
-          setAge(selectedItem.title);  // Atualiza o estado da faixa etária
+          setAge(selectedItem.title);  
         }}
         renderButton={(selectedItem, isOpened) => {
           return (
@@ -170,7 +208,7 @@ const CreatePostScreen = () => {
         dropdownStyle={styles.dropdownMenuStyle}
       />
 
-      {/* Outros campos de input, botões, etc. */}
+      
 
 
       <TextInput

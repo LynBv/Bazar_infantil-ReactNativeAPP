@@ -2,10 +2,10 @@ import { View, Text, FlatList, RefreshControl } from "react-native";
 import { useState } from "react";
 import PostCard from "../PostCard";
 import { styles } from "./style";
-import { ArrayPostagem, PropsRow } from "./type";
+import { PropsRow } from "./type";
 import React from 'react';
 
-const FeedRow = ({ listaPostagem, onRefreshing }: PropsRow) => {
+const FeedRow = ({ listaPostagem, onRefreshing, isOnProfile }: PropsRow) => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const recarregar = async () => {
@@ -27,7 +27,7 @@ const FeedRow = ({ listaPostagem, onRefreshing }: PropsRow) => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.container}>
-          <PostCard postagem={item} />
+          <PostCard postagem={item}  isOnProfile={isOnProfile}/>
         </View>
       )}
     />
