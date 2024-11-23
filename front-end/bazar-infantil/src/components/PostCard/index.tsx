@@ -4,11 +4,27 @@ import { styles } from "./style";
 import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
 import { PropsPostagem } from "./type";
+import { useAuth } from "../../hooks/useAuth";
+import { DeletePostagemUsuario } from "../../services/DeletePostagemUsuario";
 
-const PostCard = ({ postagem }: PropsPostagem) => {
+const PostCard = ({ postagem, isOnProfile }: PropsPostagem) => {
+  const navigation = useNavigation();
+  const { usuario } = useAuth();
+  const isTheOwner: boolean = postagem.usuarioDTO.id === usuario.id;
+  const showDelete: boolean = isTheOwner && isOnProfile;
+
   const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
   const postImage = "data:image/png;base64," + postagem.foto[0].dados;
-  const navigation = useNavigation();
+
+  const handleDelete = async () => {
+    const response = await DeletePostagemUsuario(postagem.id.toString())
+
+    if (response && response.status === 204) {
+      alert("postagem deletada com sucesso")
+    } else {
+      console.error("nao deletou");
+    }
+  };
 
   return (
     <View style={styles.card}>
@@ -17,6 +33,11 @@ const PostCard = ({ postagem }: PropsPostagem) => {
         <Text style={[styles.nomeUsuario, styles.estiloTexto]}>
           {postagem.usuarioDTO.nome}
         </Text>
+        {showDelete && (
+          <TouchableOpacity onPress={handleDelete}>
+            <IconM name="delete" size={30} color="#ff6f69" />
+          </TouchableOpacity>
+        )}
       </View>
 
       <Image source={{ uri: postImage }} style={styles.postImg} />
@@ -40,7 +61,7 @@ const PostCard = ({ postagem }: PropsPostagem) => {
       <TouchableOpacity
         style={styles.more}
         onPress={() =>
-          navigation.navigate("StackPostagem", { postagem: postagem  })
+          navigation.navigate("StackPostagem", { postagem: postagem })
         }
       >
         <Text style={[]}>VER MAIS DETALHES</Text>

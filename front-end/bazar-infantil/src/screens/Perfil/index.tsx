@@ -20,6 +20,7 @@ export default function Perfil() {
 
     if (response && response.status === 200) {
       setPostagens(response.data);
+    
     } else {
       console.error("nao carregou o Perfil");
     }
@@ -28,7 +29,7 @@ export default function Perfil() {
   return (
     <View style={styles.container}>
       <PerfilCard logout={handleLogOut} avatar={usuario.base64} nomeUsuario={usuario.nome}/>
-      <FeedRow listaPostagem={postagens} onRefreshing={LoadPostagens}/>
+      <FeedRow listaPostagem={postagens} onRefreshing={LoadPostagens} isOnProfile={true}/>
     </View>
   );
 }
