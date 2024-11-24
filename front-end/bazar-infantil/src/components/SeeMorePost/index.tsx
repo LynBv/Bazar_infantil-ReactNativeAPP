@@ -15,12 +15,65 @@ export const SeeMorePost = ({ postagem }: { postagem: PropsPostagem }) => {
 
   const navigation = useNavigation();
 
-  function addCarrinho() {
-    navigation.navigate("StackCarrinho", { postagem: { postagem } });
+  const categGenero = () => {
+    if (postagem.postagem.categoriasGenero === "FEMININO") {
+      return "Feminino";
+    }
+    if (postagem.postagem.categoriasGenero === "MASCULINO") {
+      return "Masculino";
+    }
+    if (postagem.postagem.categoriasGenero === "UNISSEX") {
+      return "Unissex";
+    }
   }
 
-  function comprar() {
-    //compra direta
+  const categIdade = () => {
+    if (postagem.postagem.categoriasIdade === "MESES0A3") {
+      return "0 a 3 meses";
+    }
+    if (postagem.postagem.categoriasIdade === "MESES3A6") {
+      return "3 a 6 meses";
+    }
+    if (postagem.postagem.categoriasIdade === "MESES6A9") {
+      return "6 a 9 meses";
+    }
+    if (postagem.postagem.categoriasIdade === "MESES9A12") {
+      return "9 a 12 meses";
+    }
+    if (postagem.postagem.categoriasIdade === "MESES12A18") {
+      return "12 a 18 meses";
+    }
+    if (postagem.postagem.categoriasIdade === "ANO1") {
+      return "1 ano";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS2") {
+      return "2 anos";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS4") {
+      return "4 anos";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS6") {
+      return "6 anos";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS8") {
+      return "8 anos";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS10") {
+      return "10 anos";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS12") {
+      return "12 anos";
+    }
+    if (postagem.postagem.categoriasIdade === "ANOS14") {
+      return "14 anos";
+    }
+    return "sem idade";
+  };
+
+  const preco = new Intl.NumberFormat("pt-bt", {style: "currency", currency: "BRL"});
+
+  function addCarrinho() {
+    navigation.navigate("StackCarrinho", { postagem: { postagem } });
   }
 
   return (
@@ -44,20 +97,19 @@ export const SeeMorePost = ({ postagem }: { postagem: PropsPostagem }) => {
           </Text>
           <View style={styles.postSmallDetails}>
             <Text style={styles.postCateg}>
-              {postagem.postagem.categoriasGenero}
+              {categGenero()}
             </Text>
             <Text style={styles.postCateg}>
-              {postagem.postagem.categoriasIdade}
+              {categIdade()}
             </Text>
             <Text style={styles.postData}>{postagem.postagem.dataCriacao}</Text>
           </View>
-          <Text style={styles.postPreco}>R$ {postagem.postagem.preco}</Text>
+          <Text style={styles.postPreco}>{preco.format(postagem.postagem.preco)}</Text>
         </View>
         <View style={styles.buttonArea}>
           <TouchableOpacity style={styles.buttonAdd} onPress={addCarrinho}>
             <Text style={styles.buttonText}>Adicionar ao Carrinho</Text>
           </TouchableOpacity>
-          {/* <ButtonTypes title="Comprar" handleFunction={comprar} /> */}
         </View>
       </ScrollView>
       <View style={styles.shadow}></View>

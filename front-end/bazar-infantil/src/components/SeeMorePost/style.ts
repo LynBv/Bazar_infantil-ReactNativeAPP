@@ -63,7 +63,8 @@ export const styles = StyleSheet.create({
   postDescricao:{
     fontSize: 18,
     fontWeight:"300",
-    textAlign:"justify"
+    textAlign:"justify",
+    transform:[{translateY: -55}]
   },
 
   postData:{
@@ -91,20 +92,22 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     textAlign:"center",
     fontWeight:"bold",
-    transform: [{translateX: 50}, {translateY: -55}]
+    transform: [{translateX: 0}, {translateY: -75}]
   },
 
   postSmallDetails:{
     flexDirection:"row",
     width:"100%",
     justifyContent:"space-evenly",
+    alignItems:"center",
   },
 
   postCateg:{
     fontSize:14,
     backgroundColor:"#7a7a7a60",
     borderRadius: 15,
-    padding: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
 
   buttonArea:{
@@ -118,6 +121,7 @@ export const styles = StyleSheet.create({
     justifyContent:"center",
     backgroundColor: "#40cc60",
     borderRadius:20,
+    transform: [{translateX: 25}, {translateY: -10}]
   },
 
   buttonText:{
