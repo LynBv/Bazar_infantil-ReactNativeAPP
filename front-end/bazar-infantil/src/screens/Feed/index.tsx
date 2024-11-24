@@ -6,10 +6,10 @@ import { styles } from "./style";
 import { ServiceGetPostagensFeed } from "../../services/GetPostagensFeed";
 import { Postagem } from "../../@types/apiTypes";
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NativeStackNavigationProp} from '@react-navigation/native-stack';
 import { RootStackParamList } from '../Feed/type';
 
-type FeedNavigationProp = StackNavigationProp<RootStackParamList, 'Feed'>;
+type FeedNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Feed'>;
 
 export default function Feed() {
   const [postagens, setPostagens] = useState<Postagem[]>([]);
@@ -34,6 +34,7 @@ export default function Feed() {
     ? postagens
     : postagens.filter((postagem) =>
         postagem.usuarioDTO.nome.toUpperCase().includes(query.toUpperCase())); 
+    
   const handleSearch = () => {
     let queryUpcase = query.toUpperCase();
 
