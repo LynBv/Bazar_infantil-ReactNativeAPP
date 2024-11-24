@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     transform: [{ translateX: 8 }, { translateY: 25 }],
     zIndex:1,
+    overflow:"scroll",
   },
 
   ownerInfo: {
@@ -37,6 +38,7 @@ export const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 50,
+    resizeMode:"contain",
   },
 
   ownerName: {
@@ -57,7 +59,8 @@ export const styles = StyleSheet.create({
     width: 220,
     height: 220,
     borderRadius: 25,
-    transform: [{translateX: 50}, {translateY: -65}]
+    transform: [{translateX: 50}, {translateY: -65}],
+    resizeMode:"contain"
   },
 
   postDescricao:{

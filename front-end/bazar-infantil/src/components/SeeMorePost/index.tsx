@@ -80,7 +80,7 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
     return "sem idade";
   };
 
-  const preco = new Intl.NumberFormat("pt-bt", {style: "currency", currency: "BRL"});
+  const preco = new Intl.NumberFormat("pt-BR", {style: "currency", currency: "BRL"});
 
   function addCarrinho() {
     adicionarAoCarrinho({
