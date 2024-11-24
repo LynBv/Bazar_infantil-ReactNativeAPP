@@ -27,7 +27,7 @@ const FeedRow = ({ listaPostagem, onRefreshing, isOnProfile }: PropsRow) => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.container}>
-          <PostCard postagem={item}  isOnProfile={isOnProfile}/>
+          <PostCard postagem={item}  isOnProfile={isOnProfile} />
         </View>
       )}
     />
