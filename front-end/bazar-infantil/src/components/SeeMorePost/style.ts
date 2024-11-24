@@ -63,7 +63,8 @@ export const styles = StyleSheet.create({
   postDescricao:{
     fontSize: 18,
     fontWeight:"300",
-    textAlign:"justify"
+    textAlign:"justify",
+    transform:[{translateY: -55}]
   },
 
   postData:{
@@ -83,26 +84,47 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     transform: [{translateX: 100}],
     textShadowColor: "#000",
-    textShadowRadius: 15,
-    color: "#ff60aa"
+    textShadowRadius: 25,
+    color: "#aa2050"
   },
 
   postTitle:{
-    fontSize: 40,
+    fontSize: 30,
     textAlign:"center",
     fontWeight:"bold",
+    transform: [{translateX: 0}, {translateY: -75}]
   },
 
   postSmallDetails:{
     flexDirection:"row",
     width:"100%",
     justifyContent:"space-evenly",
+    alignItems:"center",
   },
 
   postCateg:{
     fontSize:14,
     backgroundColor:"#7a7a7a60",
     borderRadius: 15,
-    
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+
+  buttonArea:{
+    width: "85%", 
+  },
+
+  buttonAdd:{
+    width:"100%",
+    height: 45,
+    alignItems:"center",
+    justifyContent:"center",
+    backgroundColor: "#40cc60",
+    borderRadius:20,
+    transform: [{translateX: 25}, {translateY: -10}]
+  },
+
+  buttonText:{
+    fontSize: 22,
   },
 });
