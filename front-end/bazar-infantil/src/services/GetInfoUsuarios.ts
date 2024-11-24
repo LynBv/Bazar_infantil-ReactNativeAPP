@@ -4,8 +4,8 @@ export const ServiceGetInfoUsuario = async (idUsuario: string) => {
   try {
     const response = await axios.get(
        /*  `http://192.168.0.12:8080/usuarios/${idUsuario}`  */
-      /* `http://apirn-production.up.railway.app/postagem/${idUsuario}` */
-      `http://192.168.0.195:8080/usuarios/${idUsuario}`
+       `http://apirn-production.up.railway.app/postagem/${idUsuario}`
+      // `http://192.168.0.195:8080/usuarios/${idUsuario}`
     );
     return response;
   } catch (error)

@@ -103,7 +103,8 @@ const CreatePostScreen = () => {
     };
 
     try {
-      const response = await axios.post('http://192.168.0.12:8080/postagem', data, {
+      // const response = await axios.post('http://192.168.0.12:8080/postagem', data, {
+        const response = await axios.post('https://apirn-production.up.railway.app/postagem', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`   ,

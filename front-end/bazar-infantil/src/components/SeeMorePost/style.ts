@@ -1,108 +1,98 @@
 import { StyleSheet } from "react-native";
 
-
 export const styles = StyleSheet.create({
-  shadow: {
-    height:"100%",
-    width:"96%",
-    position:"absolute",
-    left: 6,
-    backgroundColor:"#00000033",
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#96ceb430",
+        paddingHorizontal: 35,
+    },
 
-  container: {
-    flex: 1,
-    width: "95%",
-    backgroundColor: "#f0f0e0c0",
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: "#77777744",
-    borderRadius: 5,
-    transform: [{ translateX: 8 }, { translateY: 25 }],
-    zIndex:1,
-  },
+    ownerInfo: {
+        paddingVertical: 10,
+        backgroundColor: "#7956a1",
+        borderRadius: 8,
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 60,
+    },
 
-  ownerInfo: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    paddingVertical: 25,
-    backgroundColor: "#e0f0f095",
-    borderRadius: 20,
-    transform: [{ translateY: 10 }],
-  },
+    ownerAvatar: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        marginRight: 15,
+        marginLeft: 15,
+    },
 
-  ownerAvatar: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
-  },
+    ownerName: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
 
-  ownerName: {
-    fontSize: 22,
-    fontWeight: "bold",
-  },
+    postInfo: {
+        marginBottom: -20,
+    },
 
-  postInfo: {
-    width: "100%",
-    paddingHorizontal: 10,
-    paddingVertical: 65,
-    borderRadius: 15,
-    position: "relative",
-    top: 30,
-  },
+    postTitle: {
+        fontSize: 20,
+        textAlign: "center",
+        fontWeight: "bold",
+        marginTop: 20,
+        color: "#7956a1",
+    },
 
-  postPhoto: {
-    width: 220,
-    height: 220,
-    borderRadius: 25,
-    transform: [{translateX: 50}, {translateY: -65}]
-  },
+    postPhoto: {
+        width: 220,
+        height: 220,
+        marginTop: 80,
+        borderRadius: 8,
+        transform: [{ translateX: 60 }, { translateY: -50 }],
+    },
 
-  postDescricao:{
-    fontSize: 18,
-    fontWeight:"300",
-    textAlign:"justify"
-  },
+    postDescricao: {
+        fontSize: 20,
+        //marginBottom: 10, 
+        marginTop: 10,
+        textAlign: "center",
+        justifyContent: "center",
+        color: "#7956a1",
+    },
 
-  postData:{
-    fontSize: 12,
-    textAlign:"center",
-    color:"#555",
-    opacity: 0.7,
-  },
+    postSmallDetails: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "space-evenly",
+        marginVertical: 5,
+    },
 
-  postPreco:{
-    fontSize: 20,
-    textAlign:"center",
-    marginTop: 10,
-    padding: 10,
-    backgroundColor:"#ddf",
-    width: "35%",
-    borderRadius: 15,
-    transform: [{translateX: 100}],
-    textShadowColor: "#000",
-    textShadowRadius: 15,
-    color: "#ff60aa"
-  },
+    postCateg: {
+        fontSize: 14,
+        backgroundColor: "#96ceb4",
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        borderRadius: 15,
+        textAlign: "center",
+        color: "#fff",
+    },
 
-  postTitle:{
-    fontSize: 40,
-    textAlign:"center",
-    fontWeight:"bold",
-  },
+    postData: {
+        fontSize: 16,
+        textAlign: "center",
+        color: "#7956a1",
+        opacity: 0.7,
+    },
 
-  postSmallDetails:{
-    flexDirection:"row",
-    width:"100%",
-    justifyContent:"space-evenly",
-  },
-
-  postCateg:{
-    fontSize:14,
-    backgroundColor:"#7a7a7a60",
-    borderRadius: 15,
-    
-  },
+    postPreco: {
+        fontSize: 20,
+        textAlign: "center",
+        justifyContent: "center",
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: "#7956a1",
+        width: "35%",
+        borderRadius: 8,
+        transform: [{ translateX: 110 }],
+        color: "#fff",
+    },
 });
