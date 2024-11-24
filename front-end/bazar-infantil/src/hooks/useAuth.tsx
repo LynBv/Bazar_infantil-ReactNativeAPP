@@ -33,7 +33,8 @@ export const AuthProvider = ({ children }: any) => {
     try {
       const response = await axios.post(
         /* "https://apirn-production.up.railway.app/login",  */
-        "http://192.168.0.12:8080/login",
+       /*  "http://192.168.0.12:8080/login", */
+         `http://192.168.0.195:8080/login`,
         { username: email, password: password }
       );
 
@@ -97,17 +98,21 @@ export const AuthProvider = ({ children }: any) => {
     const response = await ServiceGetInfoUsuario(idUsuario);
 
     if (response && response.status === 200) {
-      setUsuario(response.data);
-      console.log(usuario.nome);
+     await setUsuario(response.data);
+     console.log(usuario.nome)
+
     } else {
       console.error("nao conseguiu salvar usuario");
     }
   };
 
   useEffect(() => {
+    console.log("inicio useEffect")
     getData();
+    console.log("Meio useEFFECT")
     setarUsuario();
-    console.log("passei no useeffect");
+    console.log("FIM useEFFECT")
+    console.log(usuario.nome)
   }, []);
 
   const setarUsuario = async () => {

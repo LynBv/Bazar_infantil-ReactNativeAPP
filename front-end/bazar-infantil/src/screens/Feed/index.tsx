@@ -32,7 +32,7 @@ export default function Feed() {
   return (
     <View style={styles.container}>
       <SearchBarFedd inputValue={query} handleQuerry={setQuery} />
-      <FeedRow onRefreshing={LoadPostagens} listaPostagem={postagensFiltradas}  isOnProfile={false}/>
+      <FeedRow onRefreshing={LoadPostagens} listaPostagem={postagensFiltradas} isOnProfile={false}/>
     </View>
   );
 }
