@@ -4,5 +4,5 @@ export interface PropsRow{
   listaPostagem: Postagem[];
   onRefreshing: () => void;
   isOnProfile: boolean;
+  onAddToCart: (postagem: Postagem) => void;
 }
-

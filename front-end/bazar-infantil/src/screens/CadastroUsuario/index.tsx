@@ -51,8 +51,12 @@ export default function CadastroUsuario() {
 
             axios
                 .post(
+<<<<<<< HEAD
                     /* "https://apirn-production.up.railway.app/usuarios", */
                     "http://192.168.0.12:8080/usuarios",
+=======
+                    "http://192.168.0.107:8080/usuarios",
+>>>>>>> d375824a07ff542d7a109f60a269387d84396395
                     newUser
                 )
                 .then(() => {
