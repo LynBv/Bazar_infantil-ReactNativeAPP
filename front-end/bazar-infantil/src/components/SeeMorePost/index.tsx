@@ -73,7 +73,7 @@ export const SeeMorePost = ({ postagem }: { postagem: PropsPostagem }) => {
   const preco = new Intl.NumberFormat("pt-bt", {style: "currency", currency: "BRL"});
 
   function addCarrinho() {
-    navigation.navigate("StackCarrinho", { postagem: { postagem } });
+    navigation.navigate("StackCarrinho", { postagem:  postagem  });
   }
 
   return (
