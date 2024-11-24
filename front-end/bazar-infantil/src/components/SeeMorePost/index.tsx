@@ -7,8 +7,8 @@ import { CarrinhoContext } from "../../components/context/CarrinhoContext";
 import { PropsPostagem } from "../PostCard/type";
 
 export const SeeMorePost = ({ postagem }: PropsPostagem) => {
-  const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
-  const postImage = "data:image/png;base64," + postagem.foto[0].dados;
+  const avatarImage =  postagem?.usuarioDTO?.base64 ? "data:image/png;base64," + postagem.usuarioDTO.base64 : null;
+  const postImage = postagem?.foto[0]?.dados ? "data:image/png;base64," + postagem.foto[0].dados : null;
 
   const navigation = useNavigation();
   const { adicionarAoCarrinho } = useContext(CarrinhoContext);
@@ -83,8 +83,6 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
   const preco = new Intl.NumberFormat("pt-bt", {style: "currency", currency: "BRL"});
 
   function addCarrinho() {
-    navigation.navigate("StackCarrinho", { postagem:  postagem  });
-  function addCarrinho() {
     adicionarAoCarrinho({
       id: postagem.id.toString(),
       nome: postagem.titulo || postagem.nome || "Nome não informado",
@@ -136,4 +134,4 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
       <View style={styles.shadow}></View>
     </>
   );
-};
+}
