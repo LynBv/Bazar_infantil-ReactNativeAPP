@@ -1,7 +1,6 @@
 package br.org.serratec.domain;
 
 import java.time.LocalDate;
-
 import java.util.List;
 import java.util.Objects;
 
@@ -9,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.org.serratec.enums.CategoriaIdade;
 import br.org.serratec.enums.CategoriasGenero;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -52,7 +53,7 @@ public class Postagem {
 	private LocalDate dataCriacao;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "postagem")
+	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Foto> foto;
 
 	@ManyToOne
