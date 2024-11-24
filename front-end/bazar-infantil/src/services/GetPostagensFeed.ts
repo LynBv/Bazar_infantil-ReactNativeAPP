@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 
 export const ServiceGetPostagensFeed = async () => {
   try {
-    const response = await axios.get("http://apirn-production.up.railway.app/postagem");
+    const response = await axios.get("http://192.168.0.107:8080/postagem");
     return response;
   } catch (error)
    {

@@ -5,7 +5,7 @@ import { styles } from "./style";
 import { PropsRow } from "./type";
 import React from 'react';
 
-const FeedRow = ({ listaPostagem, onRefreshing }: PropsRow) => {
+const FeedRow = ({ listaPostagem, onRefreshing, onAddToCart }: PropsRow) => {
   const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const recarregar = async () => {
@@ -27,7 +27,8 @@ const FeedRow = ({ listaPostagem, onRefreshing }: PropsRow) => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <View style={styles.container}>
-          <PostCard postagem={item} />
+          {/* Passando onAddToCart para o PostCard */}
+          <PostCard postagem={item} onAddToCart={onAddToCart} />
         </View>
       )}
     />

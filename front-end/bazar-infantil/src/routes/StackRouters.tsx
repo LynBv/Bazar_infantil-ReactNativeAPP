@@ -4,7 +4,7 @@ import { TabRouters } from './BottonTabs';
 import React from 'react';
 import {Postagem} from '../screens/Postagem';
 import CadastroUsuario from '../screens/CadastroUsuario';
-import Carrinho from '../screens/Carrinho/CarrinhoScreen';
+import Carrinho from '../screens/Carrinho/index';
 
 const Stack = createNativeStackNavigator();
 

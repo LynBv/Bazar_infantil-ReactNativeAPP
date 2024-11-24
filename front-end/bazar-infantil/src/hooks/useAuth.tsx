@@ -21,9 +21,8 @@ export const AuthProvider = ({ children }: any) => {
         setIsLoading(true);
 
         try {
-            const response = await axios.post(
-                 "https://apirn-production.up.railway.app/login", 
-               /*  "http://192.168.0.195:8080/login", */
+            const response = await axios.post( 
+               "http://192.168.0.107:8080/login",
                 { username: email, password: password }
             );
 

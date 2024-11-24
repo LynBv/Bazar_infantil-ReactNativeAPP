@@ -7,7 +7,7 @@ import { styles } from "./style";
 import { Login } from "../screens/Login";
 import Exemplo from "../screens/Exemplo";
 import React from "react";
-import Carrinho from "../screens/Carrinho/CarrinhoScreen";
+import Carrinho from "../screens/Carrinho/index";
 
 const Tab = createBottomTabNavigator();
 
