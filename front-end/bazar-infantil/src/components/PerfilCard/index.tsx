@@ -4,7 +4,7 @@ import IconM from "@expo/vector-icons/MaterialCommunityIcons";
 import { styles } from "./style";
 import { PropsPerfilCard } from "./type";
 
-export default function PerfilCard({ avatar, nomeUsuario, logout }: PropsPerfilCard) {
+export default function PerfilCard({ avatar, nomeUsuario, handleModal}: PropsPerfilCard) {
   const avatarImage = "data:image/png;base64," + avatar;
 
   return (
@@ -13,7 +13,7 @@ export default function PerfilCard({ avatar, nomeUsuario, logout }: PropsPerfilC
         <Image style={styles.avatar} source={{ uri: avatarImage }} />
         <Text style={styles.nomeUsuario}>{nomeUsuario}</Text>
       </View>
-      <TouchableOpacity onPress={logout}>
+      <TouchableOpacity onPress={handleModal}>
         <IconM name="logout" size={30} color="#4A4A4A" />
       </TouchableOpacity>
     </View>

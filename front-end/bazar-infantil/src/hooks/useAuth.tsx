@@ -97,17 +97,21 @@ export const AuthProvider = ({ children }: any) => {
     const response = await ServiceGetInfoUsuario(idUsuario);
 
     if (response && response.status === 200) {
-      setUsuario(response.data);
-      console.log(usuario.nome);
+     await setUsuario(response.data);
+     console.log(usuario.nome)
+
     } else {
       console.error("nao conseguiu salvar usuario");
     }
   };
 
   useEffect(() => {
+    console.log("inicio useEffect")
     getData();
+    console.log("Meio useEFFECT")
     setarUsuario();
-    console.log("passei no useeffect");
+    console.log("FIM useEFFECT")
+    console.log(usuario.nome)
   }, []);
 
   const setarUsuario = async () => {
