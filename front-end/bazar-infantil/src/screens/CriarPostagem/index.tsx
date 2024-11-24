@@ -12,10 +12,8 @@ const CreatePostScreen = () => {
   const [gender, setGender] = useState<string>('');  
   const [age, setAge] = useState<string>('');  
   const [price, setPrice] = useState('');
-  const [image, setImage] = useState<File | null>(null);
   const [imagem, setImagem] = useState<{ uri: string, name: string, type: string }>();
-
-
+  const [imagens, setImagens] = useState<File[]>([]);
  
   const genderOptions = [
     { title: 'MASCULINO' },
@@ -38,8 +36,6 @@ const CreatePostScreen = () => {
     { title: 'ANOS12' },
     { title: 'ANOS14' }
   ];
-
-  
 
   
 
@@ -71,8 +67,7 @@ const CreatePostScreen = () => {
       const imageFile = new File([blob], `image.${fileExtension}`, {
         type: fileType,
       });
-  
-      setImage(imageFile);
+      setImagens( prev => [...prev, imageFile]);
       setImagem({
         uri: fileUri,
         name: `image.${fileExtension}`,
@@ -83,31 +78,42 @@ const CreatePostScreen = () => {
 
   
   const handlePost = async () => {
-    if (!title || !description || !gender || !age || !price || !image) {
+    if (!title || !description || !gender || !age || !price || !imagens) {
       Alert.alert('Erro', 'Por favor, preencha todos os campos!');
       return;
     }
     
     const token = await AsyncStorage.getItem("@userToken")
+
+    const formData = new FormData();
+    formData.append('titulo', title);
+    formData.append('descricao', description);
+    formData.append('categoriasGenero', gender);
+    formData.append('categoriaIdade', age);
+    formData.append('preco', price);
+    imagens.forEach(img => {
+      formData.append('fotos', img);
+    });
    
-
-
-
-    const data = {
-      titulo: title,
-      descricao: description,
-      categoriasGenero: gender,
-      categoriaIdade: age,
-      preco: price,
-      fotos: image, 
-    };
+    // const data = {
+    //   titulo: title,
+    //   descricao: description,
+    //   categoriasGenero: gender,
+    //   categoriaIdade: age,
+    //   preco: price,
+    //   fotos: imagens, 
+    // };
 
     try {
+<<<<<<< HEAD
       // const response = await axios.post('http://192.168.0.12:8080/postagem', data, {
         const response = await axios.post('https://apirn-production.up.railway.app/postagem', data, {
+=======
+      const response = await axios.post('http://apirn-production.up.railway.app/postagem', formData, {
+>>>>>>> 8895074db2153a9550ea161c5cdb751e9754c23e
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`   ,
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -122,9 +128,6 @@ const CreatePostScreen = () => {
       Alert.alert('Erro', 'Erro ao enviar a postagem');
     }
   };
-
-
-
 
 
   return (

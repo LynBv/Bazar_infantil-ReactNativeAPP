@@ -95,4 +95,23 @@ export const styles = StyleSheet.create({
         transform: [{ translateX: 110 }],
         color: "#fff",
     },
+  
+
+  buttonArea:{
+    width: "85%", 
+  },
+
+  buttonAdd:{
+    width:"100%",
+    height: 45,
+    alignItems:"center",
+    justifyContent:"center",
+    backgroundColor: "#40cc60",
+    borderRadius:20,
+    transform: [{translateX: 25}, {translateY: -10}]
+  },
+
+  buttonText:{
+    fontSize: 22,
+  },
 });

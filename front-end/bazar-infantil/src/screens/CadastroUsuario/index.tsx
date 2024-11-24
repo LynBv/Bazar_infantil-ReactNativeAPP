@@ -34,7 +34,7 @@ export default function CadastroUsuario() {
                 setAvatars(response.data);
             })
             .catch((error) => {
-                console.error("Erro ao buscar avatares:", error);
+                console.error("Erro ao buscar avatares:", JSON.stringify(error, null, 2));
                 alert("Erro ao carregar avatares. Tente novamente.");
             });
     }, []);
@@ -51,8 +51,11 @@ export default function CadastroUsuario() {
 
             axios
                 .post(
+
                      "https://apirn-production.up.railway.app/usuarios",
                     // "http://192.168.0.12:8080/usuarios",
+
+
                     newUser
                 )
                 .then(() => {
