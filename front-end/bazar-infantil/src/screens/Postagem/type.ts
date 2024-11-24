@@ -1,4 +1,4 @@
-import { PropsPostagem } from "../../components/FeedRow/type";
+import { PropsPostagem } from "../../components/PostCard/type";
 
 export type ParamsProps = {
   postagem: PropsPostagem;

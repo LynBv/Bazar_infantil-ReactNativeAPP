@@ -83,14 +83,15 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     transform: [{translateX: 100}],
     textShadowColor: "#000",
-    textShadowRadius: 15,
-    color: "#ff60aa"
+    textShadowRadius: 25,
+    color: "#aa2050"
   },
 
   postTitle:{
-    fontSize: 40,
+    fontSize: 30,
     textAlign:"center",
     fontWeight:"bold",
+    transform: [{translateX: 50}, {translateY: -55}]
   },
 
   postSmallDetails:{
@@ -103,6 +104,23 @@ export const styles = StyleSheet.create({
     fontSize:14,
     backgroundColor:"#7a7a7a60",
     borderRadius: 15,
-    
+    padding: 5,
+  },
+
+  buttonArea:{
+    width: "85%", 
+  },
+
+  buttonAdd:{
+    width:"100%",
+    height: 45,
+    alignItems:"center",
+    justifyContent:"center",
+    backgroundColor: "#40cc60",
+    borderRadius:20,
+  },
+
+  buttonText:{
+    fontSize: 22,
   },
 });
