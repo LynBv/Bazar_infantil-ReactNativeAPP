@@ -48,6 +48,7 @@ export default function Perfil() {
         nomeUsuario={usuario.nome}
       />
       <FeedRow
+        setPostagens={setPostagens}
         onAddToCart={adicionarAoCarrinho}
         listaPostagem={postagens}
         onRefreshing={LoadPostagens}

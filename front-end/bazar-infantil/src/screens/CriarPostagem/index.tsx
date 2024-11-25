@@ -81,7 +81,6 @@ const CreatePostScreen = () => {
       const fileType = `image/${fileExtension}`;
 
       setImage({ dados: base64!, nome: nome!, tipo: fileType });
-      console.log("tentando");
 
       setImagem({
         uri: fileUri,
@@ -163,7 +162,7 @@ const CreatePostScreen = () => {
       <SelectDropdown
         data={genderOptions}
         onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
+          //console.log(selectedItem, index);
           setGender(selectedItem.title);
         }}
         renderButton={(selectedItem, isOpened) => {
@@ -194,7 +193,7 @@ const CreatePostScreen = () => {
       <SelectDropdown
         data={ageOptions}
         onSelect={(selectedItem, index) => {
-          console.log(selectedItem, index);
+          //console.log(selectedItem, index);
           setAge(selectedItem.title);
         }}
         renderButton={(selectedItem, isOpened) => {

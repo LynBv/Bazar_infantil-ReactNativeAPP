@@ -12,14 +12,14 @@ export const styles = StyleSheet.create({
     elevation: 20,
     shadowColor: "#4B92A7",
     paddingBottom: 5,
-    paddingTop: 10
+    paddingTop: 10,
   },
 
   estiloTexto: {
     color: "#4A4A4A",
   },
 
-  descricaoCard:{
+  descricaoCard: {
     backgroundColor: "white",
     padding: 10,
     width: "100%",
@@ -34,7 +34,6 @@ export const styles = StyleSheet.create({
   infoUser: {
     flexDirection: "row",
     alignItems: "center",
-    width: "100%",
     gap: 10,
   },
 
@@ -78,20 +77,31 @@ export const styles = StyleSheet.create({
     fontWeight: 600,
   },
 
-  titulo:{
+  titulo: {
     fontSize: 18,
-    fontWeight: 500
+    fontWeight: 500,
   },
 
   descricao: {
     fontSize: 15,
-    fontWeight: 300
+    fontWeight: 300,
   },
 
   more: {
     marginTop: 10,
     width: "100%",
     justifyContent: "center",
+    alignItems: "center",
+  },
+
+  delete: {
+    padding: 10
+  },
+
+  header: {
+    flexDirection: "row",
+    width: "100%",
+    justifyContent: "space-between",
     alignItems: "center",
   },
 });
