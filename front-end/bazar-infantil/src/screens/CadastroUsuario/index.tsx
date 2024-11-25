@@ -27,14 +27,14 @@ export default function CadastroUsuario() {
     useEffect(() => {
         axios
             .get(
-               /*  "https://apirn-production.up.railway.app/avatar" */
-                    "http://192.168.0.12:8080/avatar"
+                "https://apirn-production.up.railway.app/avatar" 
+                   // "http://192.168.0.12:8080/avatar"
             )
             .then((response) => {
                 setAvatars(response.data);
             })
             .catch((error) => {
-                console.error("Erro ao buscar avatares:", error);
+                console.error("Erro ao buscar avatares:", JSON.stringify(error, null, 2));
                 alert("Erro ao carregar avatares. Tente novamente.");
             });
     }, []);
@@ -51,8 +51,8 @@ export default function CadastroUsuario() {
 
             axios
                 .post(
-                    /* "https://apirn-production.up.railway.app/usuarios", */
-                    "http://192.168.0.12:8080/usuarios",
+                     "https://apirn-production.up.railway.app/usuarios", 
+                    /*"http://192.168.0.12:8080/usuarios",*/
                     newUser
                 )
                 .then(() => {

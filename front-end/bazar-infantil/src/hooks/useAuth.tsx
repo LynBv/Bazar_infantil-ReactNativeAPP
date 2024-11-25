@@ -32,14 +32,14 @@ export const AuthProvider = ({ children }: any) => {
 
     try {
       const response = await axios.post(
-        /* "https://apirn-production.up.railway.app/login",  */
-       /*  "http://192.168.0.12:8080/login", */
-         `http://192.168.0.195:8080/login`,
+         "https://apirn-production.up.railway.app/login",  
+        // "http://192.168.0.12:8080/login",
         { username: email, password: password }
       );
 
       const authorization = response.headers["authorization"];
       const token = authorization.split(" ")[1];
+      
 
       if (token) {
         await AsyncStorage.setItem("@userToken", token);
@@ -99,7 +99,8 @@ export const AuthProvider = ({ children }: any) => {
 
     if (response && response.status === 200) {
      await setUsuario(response.data);
-     console.log(usuario.nome)
+     console.log(usuario.nome);
+     
 
     } else {
       console.error("nao conseguiu salvar usuario");

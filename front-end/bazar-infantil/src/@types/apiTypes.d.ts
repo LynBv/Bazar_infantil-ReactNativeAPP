@@ -1,4 +1,5 @@
 export interface Postagem {
+  nome: string;
   id: number;
   titulo: string;
   descricao: string;

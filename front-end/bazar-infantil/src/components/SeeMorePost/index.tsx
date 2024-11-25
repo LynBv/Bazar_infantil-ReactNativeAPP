@@ -1,55 +1,134 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./style";
-import React from "react";
-import { PropsPostagem } from "../FeedRow/type";
+import React, { useContext } from "react";
 import { ButtonTypes } from "../ButtonTypes";
 import { useNavigation } from "@react-navigation/native";
+import { CarrinhoContext } from "../../components/context/CarrinhoContext";
+import { PropsPostagem } from "../PostCard/type";
 
-export const SeeMorePost = ({ postagem }: PropsPostagem ) => {
+export const SeeMorePost = ({ postagem }: PropsPostagem) => {
   const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
-  const postImage = "data:image/png;base64," + postagem.foto[0].dados;
+  const postImage = "data:image/png;base64," + postagem.foto[0].dados ;
 
   const navigation = useNavigation();
+  const { adicionarAoCarrinho } = useContext(CarrinhoContext);
+  const handleAddToCart = () => {
+    const itemCarrinho = {
+      id: postagem.id.toString(),
+      nome: postagem.titulo,
+      preco: postagem.preco,
+      imagem: postImage,
+    };
 
-  function addCarrinho() {
-    navigation.navigate("StackCarrinho", {postagem: {postagem}})
+    console.log("Adicionando item ao carrinho:", itemCarrinho);
+
+    adicionarAoCarrinho(itemCarrinho);
+  };
+
+  const categGenero = () => {
+    if (postagem.categoriasGenero === "FEMININO") {
+      return "Feminino";
+    }
+    if (postagem.categoriasGenero === "MASCULINO") {
+      return "Masculino";
+    }
+    if (postagem.categoriasGenero === "UNISSEX") {
+      return "Unissex";
+    }
   }
 
-  function comprar() {
-    //compra direta
+  const categIdade = () => {
+    if (postagem.categoriasIdade === "MESES0A3") {
+      return "0 a 3 meses";
+    }
+    if (postagem.categoriasIdade === "MESES3A6") {
+      return "3 a 6 meses";
+    }
+    if (postagem.categoriasIdade === "MESES6A9") {
+      return "6 a 9 meses";
+    }
+    if (postagem.categoriasIdade === "MESES9A12") {
+      return "9 a 12 meses";
+    }
+    if (postagem.categoriasIdade === "MESES12A18") {
+      return "12 a 18 meses";
+    }
+    if (postagem.categoriasIdade === "ANO1") {
+      return "1 ano";
+    }
+    if (postagem.categoriasIdade === "ANOS2") {
+      return "2 anos";
+    }
+    if (postagem.categoriasIdade === "ANOS4") {
+      return "4 anos";
+    }
+    if (postagem.categoriasIdade === "ANOS6") {
+      return "6 anos";
+    }
+    if (postagem.categoriasIdade === "ANOS8") {
+      return "8 anos";
+    }
+    if (postagem.categoriasIdade === "ANOS10") {
+      return "10 anos";
+    }
+    if (postagem.categoriasIdade === "ANOS12") {
+      return "12 anos";
+    }
+    if (postagem.categoriasIdade === "ANOS14") {
+      return "14 anos";
+    }
+    return "sem idade";
+  };
+
+  const preco = new Intl.NumberFormat("pt-BR", {style: "currency", currency: "BRL"});
+
+  function addCarrinho() {
+    adicionarAoCarrinho({
+      id: postagem.id.toString(),
+      nome: postagem.titulo || postagem.nome || "Nome não informado",
+      preco: postagem.preco,
+      imagem: postImage,
+    });
+    navigation.navigate("StackCarrinho");
   }
 
   return (
     <>
       <ScrollView style={styles.container}>
         <View style={styles.ownerInfo}>
-          <Image source={{ uri: avatarImage }} style={styles.ownerAvatar} />
+          {avatarImage && (
+            <Image source={{ uri: avatarImage }} style={{height: 70, width: 70, borderRadius: 50}}/>
+          )}
           <Text style={styles.ownerName}>
             {postagem.usuarioDTO.nome}
           </Text>
         </View>
         <View style={styles.postInfo}>
           <Text style={styles.postTitle}>{postagem.titulo}</Text>
-          <Image source={{ uri: postImage }} style={styles.postPhoto} />
+          {postImage && (
+            <Image source={{ uri: postImage }}  />
+          )}
           <Text style={styles.postDescricao}>
             {postagem.descricao}
           </Text>
           <View style={styles.postSmallDetails}>
-            <Text style={styles.postCateg}>{postagem.categoriasGenero}</Text>
-            <Text style={styles.postCateg}>{postagem.categoriasIdade}</Text>
+            <Text style={styles.postCateg}>
+              {categGenero()}
+            </Text>
+            <Text style={styles.postCateg}>
+              {categIdade()}
+            </Text>
             <Text style={styles.postData}>{postagem.dataCriacao}</Text>
           </View>
-          <Text style={styles.postPreco}>R$ {postagem.preco}</Text>
+          <Text style={styles.postPreco}>{preco.format(postagem.preco)}</Text>
         </View>
-        <View>
-          <ButtonTypes
-            title="Adicionar ao Carrinho"
-            handleFunction={addCarrinho}
-          />
-          <ButtonTypes title="Comprar" handleFunction={comprar} />
+        <View style={styles.buttonArea}>
+          <TouchableOpacity style={styles.buttonAdd} onPress={addCarrinho}>
+            <Text style={styles.buttonText}>Adicionar ao Carrinho</Text>
+          </TouchableOpacity>
         </View>
       </ScrollView>
       <View style={styles.shadow}></View>
     </>
   );
-};
+}
