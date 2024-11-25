@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,8 +56,8 @@ public class PostagemController {
 		return new String();
 	}
 	
-	@PostMapping(consumes = {"multipart/form-data"})
-	public ResponseEntity<PostagemDTO> criar(@Valid @ModelAttribute PostagemInserirDTO postagemInserirDTO){
+	@PostMapping()
+	public ResponseEntity<PostagemDTO> criar(@Valid @RequestBody PostagemInserirDTO postagemInserirDTO, @RequestHeader HttpHeaders headers){
 		PostagemDTO postagemDTO = postagemService.inserirPost(postagemInserirDTO);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
@@ -67,7 +67,7 @@ public class PostagemController {
 		return ResponseEntity.created(uri).body(postagemDTO);
 	}
 	
-	@PutMapping("/{id}")
+	/* @PutMapping("/{id}")
 	public ResponseEntity<PostagemDTO> atualizar(@PathVariable Long id, @Valid @RequestBody PostagemInserirDTO postagemInserirDTO){
 		Optional<Postagem> usuarioOpt = postagemService.buscar(id);
 		if (usuarioOpt.isEmpty()) {
@@ -76,7 +76,7 @@ public class PostagemController {
 		PostagemDTO postagemDTO = postagemService.atualizar(id, postagemInserirDTO);
 		postagemDTO.setId(id);
 		return ResponseEntity.ok(postagemDTO);
-	}
+	} */
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id){

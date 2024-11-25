@@ -32,7 +32,7 @@ public class PostagemDTO {
 		this.categoriasIdade = postagem.getCategoriasIdade();
 		this.preco = postagem.getPreco();
 		this.dataCriacao = postagem.getDataCriacao();
-		this.foto = postagem.getFoto();
+		this.foto = postagem.getFotos();
 		this.usuarioDTO = new UsuarioDTO(postagem.getUsuario());
 	}
 
