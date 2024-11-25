@@ -92,9 +92,9 @@ const CreatePostScreen = () => {
     formData.append('categoriaIdade', age);
     formData.append('preco', price);
     imagens.forEach(img => {
+      console.log(img);
       formData.append('fotos', img);
     });
-   
     // const data = {
     //   titulo: title,
     //   descricao: description,
