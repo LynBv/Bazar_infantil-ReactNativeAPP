@@ -147,6 +147,7 @@ const CreatePostScreen = () => {
         style={styles.input}
         placeholder="Título"
         placeholderTextColor="#A8A8A8"
+        
         value={title}
         onChangeText={setTitle}
       />

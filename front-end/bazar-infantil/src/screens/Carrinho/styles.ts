@@ -6,54 +6,7 @@ export default StyleSheet.create({
     padding: 16,
     backgroundColor: "#fff",
   },
-  itemContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginVertical: 8,
-    padding: 10,
-    borderRadius: 8,
-    backgroundColor: "#f8f9fa",
-  },
-  itemImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 8,
-    marginRight: 16,
-  },
-  itemDetails: {
-    flex: 1,
-  },
-  itemText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-  },
-  itemPrice: {
-    fontSize: 14,
-    color: "#555",
-  },
-  removeButton: {
-    backgroundColor: "#e63946",
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 5,
-  },
-  removeButtonText: {
-    color: "#fff",
-    fontSize: 14,
-  },
-  clearButton: {
-    marginTop: 20,
-    backgroundColor: "#848953c3",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-    alignItems: "center",
-  },
-  clearButtonText: {
-    color: "#fff",
-    fontSize: 17,
-  },
+
   header: {
     width: "100%",
     padding: 20,
@@ -65,8 +18,75 @@ export default StyleSheet.create({
   headerText: {
     fontSize: 26,
     fontWeight: "bold",
-    color: "#68696a",
+    color: "#7956a1",
+    marginTop: 30,
   },
+
+  itemContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 8,
+    padding: 10,
+    borderRadius: 8,
+    backgroundColor: "#f8f9fa",
+  },
+
+  itemImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 8,
+    marginRight: 16,
+  },
+  itemDetails: {
+    flex: 1,
+  },
+  itemText: {
+    fontSize: 10,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  itemPrice: {
+    fontSize: 14,
+    color: "#555",
+  },
+  
+  removeButton: {
+    backgroundColor: "#e63946",
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 25,
+  },
+
+  removeButtonText: {
+    color: "#fff",
+    fontSize: 14,
+  },
+
+  footerContainer: {
+    marginBottom:30,
+  },
+  
+  totalText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333",
+  },
+
+  clearButton: {
+    marginTop: 20,
+    backgroundColor: "#96ceb4",
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    alignItems: "center",
+  },
+
+  clearButtonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  
   totalContainer: {
     position: "absolute",
     bottom: 10,
@@ -80,10 +100,6 @@ export default StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  totalText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
-  },
+ 
   
 });
