@@ -1,133 +1,110 @@
 import { StyleSheet } from "react-native";
 
-
 export const styles = StyleSheet.create({
-  shadow: {
-    height:"100%",
-    width:"96%",
-    position:"absolute",
-    left: 6,
-    backgroundColor:"#00000033",
-  },
+    container: {
+        flex: 1,
+        backgroundColor: "#fcfcfc",
+        paddingHorizontal: 45,
+        paddingTop: 15,
+    },
 
-  container: {
-    flex: 1,
-    width: "95%",
-    backgroundColor: "#f0f0e0c0",
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderColor: "#77777744",
-    borderRadius: 5,
-    transform: [{ translateX: 8 }, { translateY: 25 }],
-    zIndex:1,
-    overflow:"scroll",
-  },
+    ownerInfo: {
+        paddingVertical: 5,
+        backgroundColor: "#7956a190",
+        borderRadius: 8,
+        flexDirection: "row",
+        alignItems: "center",
+        marginTop: 100,
+    },
 
-  ownerInfo: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    paddingVertical: 25,
-    backgroundColor: "#e0f0f095",
-    borderRadius: 20,
-    transform: [{ translateY: 10 }],
-  },
+    ownerName: {
+        color: "#fff",
+        fontSize: 16,
+        fontWeight: "bold",
+        marginLeft: 15,
+    },
+    
 
-  ownerAvatar: {
-    width: 70,
-    height: 70,
-    borderRadius: 50,
-    resizeMode:"contain",
-  },
+    postInfo: {
+        marginBottom: 20,
+        alignItems: "center",
+    },
 
-  ownerName: {
-    fontSize: 22,
-    fontWeight: "bold",
-  },
+    postTitle: {
+        fontSize: 22,
+        textAlign: "center",
+        fontWeight: "bold",
+        marginTop: 20,
+        color: "#7956a1",
+    },
 
-  postInfo: {
-    width: "100%",
-    paddingHorizontal: 10,
-    paddingVertical: 65,
-    borderRadius: 15,
-    position: "relative",
-    top: 30,
-  },
+    postDescricao: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 10,
+        marginTop: 20,
+        textAlign: "center",
+        justifyContent: "center",
+        color: "#7956a1",
+    },
 
-  postPhoto: {
-    width: 220,
-    height: 220,
-    borderRadius: 25,
-    transform: [{translateX: 50}, {translateY: -65}],
-    resizeMode:"contain"
-  },
+    postSmallDetails: {
+        flexDirection: "row",
+        width: "100%",
+        justifyContent: "space-evenly",
+        marginVertical: 10,
+        gap: 1,
+    },
 
-  postDescricao:{
-    fontSize: 18,
-    fontWeight:"300",
-    textAlign:"justify",
-    transform:[{translateY: -55}]
-  },
+    postCateg: {
+        fontSize: 16,
+        backgroundColor: "#96ceb4",
+        paddingHorizontal: 10,
+        paddingVertical: 5,
+        marginTop: 10,
+        borderRadius: 15,
+        textAlign: "center",
+        color: "#fff",
+    },
 
-  postData:{
-    fontSize: 12,
-    textAlign:"center",
-    color:"#555",
-    opacity: 0.7,
-  },
+    postData: {
+        fontSize: 18,
+        fontWeight: "bold",
+        textAlign: "center",
+        color: "#7956a1",
+        opacity: 0.7,
+        marginTop: 20,
+    },
 
-  postPreco:{
-    fontSize: 20,
-    textAlign:"center",
-    marginTop: 10,
-    padding: 10,
-    backgroundColor:"#ddf",
-    width: "35%",
-    borderRadius: 15,
-    transform: [{translateX: 100}],
-    textShadowColor: "#000",
-    textShadowRadius: 25,
-    color: "#aa2050"
-  },
+    postPreco: {
+        fontSize: 20,
+        textAlign: "center",
+        justifyContent: "center",
+        marginTop: 30,
+        padding: 10,
+        backgroundColor: "#7956a1",
+        width: "35%",
+        borderRadius: 25,
+        color: "#fff",
+    },
 
-  postTitle:{
-    fontSize: 30,
-    textAlign:"center",
-    fontWeight:"bold",
-    transform: [{translateX: 0}, {translateY: -75}]
-  },
+    buttonArea: {
+        width: "85%",
+    },
 
-  postSmallDetails:{
-    flexDirection:"row",
-    width:"100%",
-    justifyContent:"space-evenly",
-    alignItems:"center",
-  },
+    buttonAdd: {
+        width: "100%",
+        height: 45,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#96ceb4",
+        marginTop: 20,
+        borderRadius: 20,
+        transform: [{ translateX: 25 }, { translateY: -10 }],
+    },
 
-  postCateg:{
-    fontSize:14,
-    backgroundColor:"#7a7a7a60",
-    borderRadius: 15,
-    paddingVertical: 5,
-    paddingHorizontal: 10,
-  },
-
-  buttonArea:{
-    width: "85%", 
-  },
-
-  buttonAdd:{
-    width:"100%",
-    height: 45,
-    alignItems:"center",
-    justifyContent:"center",
-    backgroundColor: "#40cc60",
-    borderRadius:20,
-    transform: [{translateX: 25}, {translateY: -10}]
-  },
-
-  buttonText:{
-    fontSize: 22,
-  },
+    buttonText: {
+        fontSize: 22,
+        color: "#fff",
+    },
 });
