@@ -1,9 +1,5 @@
 package br.org.serratec.dto;
 
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import br.org.serratec.enums.CategoriaIdade;
 import br.org.serratec.enums.CategoriasGenero;
 
@@ -14,7 +10,7 @@ public class PostagemInserirDTO {
 	private CategoriasGenero categoriasGenero;
 	private CategoriaIdade categoriaIdade;
 	private Double preco;
-	private List<MultipartFile> fotos;
+	private FotoInserirDto foto;
 
 	public String getTitulo() {
 		return titulo;
@@ -56,12 +52,13 @@ public class PostagemInserirDTO {
 		this.preco = preco;
 	}
 
-	public List<MultipartFile> getFotos() {
-		return fotos;
+	public FotoInserirDto getFoto() {
+		return foto;
 	}
 
-	public void setFotos(List<MultipartFile> fotos) {
-		this.fotos = fotos;
+	public void setFoto(FotoInserirDto foto) {
+		this.foto = foto;
 	}
 
+	
 }

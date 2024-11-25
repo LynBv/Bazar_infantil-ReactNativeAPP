@@ -34,32 +34,8 @@ export default function Feed() {
     ? postagens
     : postagens.filter((postagem) =>
         postagem.usuarioDTO.nome.toUpperCase().includes(query.toUpperCase())); 
-    
-  // const handleSearch = () => {
-  //   let queryUpcase = query.toUpperCase();
 
-  //   const newPostagem = postagens.filter((postagem) =>
-  //     postagem.usuarioDTO.nome.toUpperCase().includes(queryUpcase)
-  //   );
 
-  //   setQueryPostagens(newPostagem);
-  // };
-
-  // useEffect(() => {
-  //   LoadPostagens();
-  // }, []);
-
-  // useEffect(() => {
-  //   setIsSearching(true);
-  //   handleSearch();
-  //   if (query === "") {
-  //     setIsSearching(false);
-  //   }
-  // }, [query]);
-
-  // const showPostagens = () => {
-  //   return isSearching ? queryPostagens : postagens;
-  // };
   const adicionarAoCarrinho = (postagem: Postagem) => {
     navigation.navigate("Carrinho", { postagem });
   };

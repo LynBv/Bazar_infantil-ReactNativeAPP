@@ -18,6 +18,14 @@ export interface ArrayPostagem {
 export interface Foto {
   id: number;
   dados: string;
+  nome: string;
+  tipo: string;
+}
+
+export interface FotoInserir{
+  dados: string;
+  nome: string;
+  tipo: string;
 }
 
 export interface UsuarioDTO {

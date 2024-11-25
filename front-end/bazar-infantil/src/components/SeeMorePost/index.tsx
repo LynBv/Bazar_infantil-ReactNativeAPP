@@ -7,8 +7,8 @@ import { CarrinhoContext } from "../../components/context/CarrinhoContext";
 import { PropsPostagem } from "../PostCard/type";
 
 export const SeeMorePost = ({ postagem }: PropsPostagem) => {
-  const avatarImage =  postagem?.usuarioDTO?.base64 ? "data:image/png;base64," + postagem.usuarioDTO.base64 : null;
-  const postImage = postagem?.foto[0]?.dados ? "data:image/png;base64," + postagem.foto[0].dados : null;
+  const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
+  const postImage = "data:image/png;base64," + postagem.foto[0].dados ;
 
   const navigation = useNavigation();
   const { adicionarAoCarrinho } = useContext(CarrinhoContext);
@@ -92,15 +92,12 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
     navigation.navigate("StackCarrinho");
   }
 
-  function comprar() {
-  }
-
   return (
     <>
       <ScrollView style={styles.container}>
         <View style={styles.ownerInfo}>
           {avatarImage && (
-            <Image source={{ uri: avatarImage }} style={styles.ownerAvatar} />
+            <Image source={{ uri: avatarImage }} style={{height: 70, width: 70, borderRadius: 50}}/>
           )}
           <Text style={styles.ownerName}>
             {postagem.usuarioDTO.nome}
@@ -109,7 +106,7 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
         <View style={styles.postInfo}>
           <Text style={styles.postTitle}>{postagem.titulo}</Text>
           {postImage && (
-            <Image source={{ uri: postImage }} style={styles.postPhoto} />
+            <Image source={{ uri: postImage }}  />
           )}
           <Text style={styles.postDescricao}>
             {postagem.descricao}
