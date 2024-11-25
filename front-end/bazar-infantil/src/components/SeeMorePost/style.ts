@@ -3,14 +3,14 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#96ceb430",
+        backgroundColor: "#fcfcfc",
         paddingHorizontal: 45,
         paddingTop: 15,
     },
 
     ownerInfo: {
         paddingVertical: 5,
-        backgroundColor: "#7956a1",
+        backgroundColor: "#7956a190",
         borderRadius: 8,
         flexDirection: "row",
         alignItems: "center",
@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
         fontWeight: "bold",
         marginLeft: 15,
     },
+    
 
     postInfo: {
         marginBottom: 20,
@@ -30,7 +31,7 @@ export const styles = StyleSheet.create({
     },
 
     postTitle: {
-        fontSize: 20,
+        fontSize: 22,
         textAlign: "center",
         fontWeight: "bold",
         marginTop: 20,
@@ -38,7 +39,8 @@ export const styles = StyleSheet.create({
     },
 
     postDescricao: {
-        fontSize: 22,
+        fontSize: 20,
+        fontWeight: "bold",
         marginBottom: 10,
         marginTop: 20,
         textAlign: "center",
@@ -55,7 +57,7 @@ export const styles = StyleSheet.create({
     },
 
     postCateg: {
-        fontSize: 14,
+        fontSize: 16,
         backgroundColor: "#96ceb4",
         paddingHorizontal: 10,
         paddingVertical: 5,
@@ -66,7 +68,8 @@ export const styles = StyleSheet.create({
     },
 
     postData: {
-        fontSize: 16,
+        fontSize: 18,
+        fontWeight: "bold",
         textAlign: "center",
         color: "#7956a1",
         opacity: 0.7,
@@ -81,7 +84,7 @@ export const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: "#7956a1",
         width: "35%",
-        borderRadius: 8,
+        borderRadius: 25,
         color: "#fff",
     },
 

@@ -106,7 +106,9 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
         <View style={styles.postInfo}>
           <Text style={styles.postTitle}>{postagem.titulo}</Text>
           {postImage && (
-            <Image source={{ uri: postImage }} style={{height: 230, width:230, borderRadius: 8, marginTop: 20, alignSelf: "center", borderWidth: 2, borderColor:"#7956a1"}} />
+            <Image source={{ uri: postImage }} 
+            
+            style={{height: 230, width:230, borderRadius: 25, marginTop: 20, alignSelf: "center", borderWidth: 1, borderColor:"#7956a1"}} />
           )}
           <Text style={styles.postDescricao}>
             {postagem.descricao}
