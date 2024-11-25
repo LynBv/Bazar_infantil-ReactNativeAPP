@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { JWTtoken, PropsContext } from "./type";
 import { ServiceGetInfoUsuario } from "../services/GetInfoUsuarios";
 import { UsuarioDTO } from "../@types/apiTypes";
@@ -32,8 +32,9 @@ export const AuthProvider = ({ children }: any) => {
 
     try {
       const response = await axios.post(
-         "https://apirn-production.up.railway.app/login",  
+         //"https://apirn-production.up.railway.app/login",  
         // "http://192.168.0.12:8080/login",
+        "http://192.168.0.195:8080/login",
         { username: email, password: password }
       );
 
@@ -108,12 +109,8 @@ export const AuthProvider = ({ children }: any) => {
   };
 
   useEffect(() => {
-    console.log("inicio useEffect")
     getData();
-    console.log("Meio useEFFECT")
     setarUsuario();
-    console.log("FIM useEFFECT")
-    console.log(usuario.nome)
   }, []);
 
   const setarUsuario = async () => {
