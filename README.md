@@ -39,4 +39,4 @@ Substitua os IPs pelo IP do servidor do back-end local.
 ### Instalação e Execução  
 1. Clone o repositório:  
    ```bash  
-   git clone https://github.com/seuusuario/bazar-infantil.git  
+   git clone https://github.com/LynBv/bazar-infantil.git  
