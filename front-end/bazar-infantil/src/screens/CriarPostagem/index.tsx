@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   View,
   Text,
@@ -8,12 +8,12 @@ import {
   Image,
   Alert,
 } from "react-native";
-import axios, { AxiosError } from "axios";
 import styles from "./styles";
 import * as ImagePicker from "expo-image-picker";
 import SelectDropdown from "react-native-select-dropdown";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { FotoInserir } from "../../@types/apiTypes";
+import axios, { AxiosError } from "axios";
 
 const CreatePostScreen = () => {
   const [title, setTitle] = useState("");
@@ -81,6 +81,7 @@ const CreatePostScreen = () => {
       const fileType = `image/${fileExtension}`;
 
       setImage({ dados: base64!, nome: nome!, tipo: fileType });
+      console.log("tentando");
 
       setImagem({
         uri: fileUri,
@@ -118,17 +119,15 @@ const CreatePostScreen = () => {
           },
         }
       );
-
-
       if (response.status === 201) {
         Alert.alert("Sucesso", "Postagem criada com sucesso!");
       } else {
         Alert.alert("Erro", "Falha ao criar a postagem.");
       }
     } catch (error) {
-      const axiosError = error as AxiosError;
+      /* const axiosError = error as AxiosError;
       console.error(axiosError.message + " <-------------llERROKSV");
-      console.error(axiosError.stack + " ");
+      console.error(axiosError.stack + " "); */
       Alert.alert("Erro", "Erro ao enviar a postagem");
     }
   };

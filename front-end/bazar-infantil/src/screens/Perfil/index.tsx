@@ -7,11 +7,16 @@ import { Postagem } from "../../@types/apiTypes";
 import { ServiceGetPostagensPerfil } from "../../services/GetPostagensPerfil";
 import { useAuth } from "../../hooks/useAuth";
 import LogoutModal from "../../components/LogoutModal";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../Feed/type";
 
 export default function Perfil() {
+  type FeedNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Perfil'>;
   const [postagens, setPostagens] = useState<Postagem[]>([]);
   const { usuario, handleLogOut } = useAuth();
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const navigation = useNavigation<FeedNavigationProp>();
 
   useEffect(() => {
     LoadPostagens();
@@ -31,6 +36,10 @@ export default function Perfil() {
     setOpenModal(!openModal);
   };
 
+  const adicionarAoCarrinho = (postagem: Postagem) => {
+    navigation.navigate("Carrinho", { postagem });
+  };
+
   return (
     <View style={styles.container}>
       <PerfilCard
@@ -39,6 +48,7 @@ export default function Perfil() {
         nomeUsuario={usuario.nome}
       />
       <FeedRow
+        onAddToCart={adicionarAoCarrinho}
         listaPostagem={postagens}
         onRefreshing={LoadPostagens}
         isOnProfile={true}
