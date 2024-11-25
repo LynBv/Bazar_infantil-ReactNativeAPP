@@ -5,6 +5,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
         paddingTop: 50
-    }
+    },
     
 });
