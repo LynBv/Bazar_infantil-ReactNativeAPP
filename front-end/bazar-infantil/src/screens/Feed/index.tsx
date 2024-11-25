@@ -43,7 +43,7 @@ export default function Feed() {
   return (
     <View style={styles.container}>
       <SearchBarFedd inputValue={query} handleQuerry={setQuery} />
-      <FeedRow onRefreshing={LoadPostagens} listaPostagem={postagensFiltradas} isOnProfile={false} onAddToCart={adicionarAoCarrinho}/>
+      <FeedRow onRefreshing={LoadPostagens} listaPostagem={postagensFiltradas} isOnProfile={false} onAddToCart={adicionarAoCarrinho} setPostagens={setPostagens}/>
     </View>
   );
 }

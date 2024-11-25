@@ -19,11 +19,11 @@ export const CarrinhoProvider: React.FC<{ children: ReactNode }> = ({ children }
     const existeNoCarrinho = itensCarrinho.some((carrinhoItem) => carrinhoItem.id === item.id);
 
     if (existeNoCarrinho) {
-      console.log(`Item ${item.nome} já está no carrinho.`);
+     // console.log(`Item ${item.nome} já está no carrinho.`);
       return; 
     }
     setItensCarrinho((prev) => [...prev, item]);
-    console.log(`Item ${item.nome} adicionado ao carrinho.`);
+   // console.log(`Item ${item.nome} adicionado ao carrinho.`);
   };
   const removerItemCarrinho = (id: string) => {
     setItensCarrinho((prev) => prev.filter((item) => item.id !== id));

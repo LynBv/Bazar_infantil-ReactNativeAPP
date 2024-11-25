@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }: any) => {
         navigation.navigate("StackFeed");
       } else {
         alert("Email ou senha inválidos.");
-        console.log("Response", response.status);
+        //console.log("Response", response.status);
       }
     } catch (error) {
       console.error("Erro ao autenticar:", error);
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }: any) => {
       await AsyncStorage.removeItem("@userToken");
       await AsyncStorage.removeItem("@userData");
       navigation.navigate("StackLogin");
-      console.log("desloguei")
+      //console.log("desloguei")
     } catch (error) {
       console.error("Erro ao deslogar:", error);
     }
@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }: any) => {
       const jsonValue = JSON.stringify(email);
       await AsyncStorage.setItem("@InfoUser", jsonValue);
     } catch (error) {
-      console.log("Erro ao salvar dados!");
+      console.error("Erro ao salvar dados!" + error);
     }
   };
 
@@ -86,11 +86,11 @@ export const AuthProvider = ({ children }: any) => {
       const value = await AsyncStorage.getItem("@InfoUser");
       if (value !== null) {
         const jsonValue = JSON.parse(value);
-        console.log("Pegou os dados", jsonValue);
+        //console.log("Pegou os dados", jsonValue);
         navigation.navigate("StackFeed");
       }
     } catch (error) {
-      console.log("Erro ao buscar dados!");
+      console.error("Erro ao buscar dados!" + error);
     }
     setIsLoading(false);
   };
@@ -100,8 +100,6 @@ export const AuthProvider = ({ children }: any) => {
 
     if (response && response.status === 200) {
      await setUsuario(response.data);
-     console.log(usuario.nome);
-     
 
     } else {
       console.error("nao conseguiu salvar usuario");
