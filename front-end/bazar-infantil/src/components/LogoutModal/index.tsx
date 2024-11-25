@@ -7,7 +7,7 @@ const LogoutModal = ({ openModal, handleLogout, handleModal }: PropsModal) => {
 
   
   return (
-    <Modal visible={openModal} animationType="slide">
+    <Modal visible={openModal} animationType="slide" transparent={true} style={styles.modalBox}>
       <View style={styles.card}>
         <Text> Deseja fazer Logout?</Text>
         <View style={styles.options}>

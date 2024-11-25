@@ -43,14 +43,15 @@ export default function Perfil() {
         onRefreshing={LoadPostagens}
         isOnProfile={true}
       />
- 
-      {openModal && (
-        <LogoutModal
-          openModal={openModal}
-          handleLogout={handleLogOut}
-          handleModal={handleModal}
-        />
-      )}
+    
+        {openModal && (
+          <LogoutModal
+            openModal={openModal}
+            handleLogout={handleLogOut}
+            handleModal={handleModal}
+          />
+        )}
+
     </View>
   );
 }

@@ -54,7 +54,7 @@ public class Postagem {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "postagem", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Foto> foto;
+	private List<Foto> fotos;
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario")
@@ -107,19 +107,7 @@ public class Postagem {
 	public void setDataCriacao(LocalDate dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
-
-	public List<Foto> getFoto() {
-		return foto;
-	}
-
-	public void setFoto(List<Foto> foto) {
-		this.foto = foto;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -137,6 +125,7 @@ public class Postagem {
 		return Objects.hash(id);
 	}
 
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -147,6 +136,18 @@ public class Postagem {
 			return false;
 		Postagem other = (Postagem) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public void setFotos(List<Foto> fotos) {
+		this.fotos = fotos;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public List<Foto> getFotos() {
+		return fotos;
 	}
 
 }

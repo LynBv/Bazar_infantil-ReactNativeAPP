@@ -7,10 +7,10 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import br.org.serratec.domain.Foto;
 import br.org.serratec.domain.Postagem;
+import br.org.serratec.dto.FotoInserirDto;
 import br.org.serratec.dto.PostagemDTO;
 import br.org.serratec.dto.PostagemInserirDTO;
 import br.org.serratec.repository.PostagemRepository;
@@ -61,14 +61,18 @@ public class PostagemService {
 		postagem.setCategoriasIdade(postagemInserirDTO.getCategoriaIdade());
 		postagem.setUsuario(usuarioRepository.findById(usuarioService.idUsuarioLogado()).get());
 		
+		var fotoDto = postagemInserirDTO.getFoto();
+		List<Foto> fotos = new ArrayList<>();
+		Foto foto = new Foto(fotoDto, postagem);
+		fotos.add(foto);
 		postagem = postagemRepository.save(postagem);
 		
-		postagem.setFoto(converterParaFotos(postagemInserirDTO.getFotos(), postagem.getId()));
+		postagem.setFotos(fotos);
 		
 		return new PostagemDTO(postagemRepository.save(postagem));
 	}
 	
-	public PostagemDTO atualizar(Long id, PostagemInserirDTO postagemInserirDTO) {
+/* 	public PostagemDTO atualizar(Long id, PostagemInserirDTO postagemInserirDTO) {
 		if (postagemRepository.findById(id).isEmpty()) {
 			throw new RuntimeException("Essa postaem não existe!");
 		}
@@ -78,7 +82,7 @@ public class PostagemService {
 		Postagem postagem = new Postagem();
 		postagem.setId(id);
 		postagem.setDataCriacao(LocalDate.now());
-		postagem.setFoto(converterParaFotos(postagemInserirDTO.getFotos(), id));
+		postagem.setFoto(converterParaFotos(postagemInserirDTO.getFoto(), id));
 		postagem.setPreco(postagemInserirDTO.getPreco());
 		postagem.setTitulo(postagemInserirDTO.getTitulo());
 		postagem.setDescricao(postagemInserirDTO.getDescricao());
@@ -86,19 +90,20 @@ public class PostagemService {
 		postagem.setCategoriasIdade(postagemInserirDTO.getCategoriaIdade());
 		postagem.setUsuario(usuarioService.buscar(usuarioService.idUsuarioLogado()).get());
 		return new PostagemDTO(postagemRepository.save(postagem));
-	}
+	} */
 	
 	public void deletar(Long id) {
 		postagemRepository.deleteById(id);
 	}
 	
-	private List<Foto> converterParaFotos(List<MultipartFile> files, Long id) {
+	private List<Foto> converterParaFotos(List<FotoInserirDto> files, Long id) {
         List<Foto> fotos = new ArrayList<>();
-        for (MultipartFile file : files) {
+        for (FotoInserirDto file : files) {
             try {
-                fotos.add(fotoService.inserir(postagemRepository.findById(id).get(), file));
+                Foto foto = new Foto(file, postagemRepository.findById(id).get());
+				fotos.add(foto);
             } catch (Exception e) {
-                throw new RuntimeException("Erro ao processar arquivo: " + file.getOriginalFilename(), e);
+                throw new RuntimeException("Erro ao processar arquivo: " + file, e);
             }
         }
         return fotos;

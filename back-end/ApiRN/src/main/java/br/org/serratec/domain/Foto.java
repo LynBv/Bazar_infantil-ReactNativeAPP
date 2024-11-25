@@ -2,6 +2,7 @@ package br.org.serratec.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.org.serratec.dto.FotoInserirDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -45,6 +46,14 @@ public class Foto {
 		this.postagem = postagem;
 		this.tipo = tipo;
 		this.nome = nome;
+	}
+
+	public Foto(FotoInserirDto fotoInserirDto, Postagem postagem) {
+		super();
+		this.dados = fotoInserirDto.getDados();
+		this.postagem = postagem;
+		this.tipo = fotoInserirDto.getTipo();
+		this.nome = fotoInserirDto.getNome();
 	}
 
 	public Long getId() {
