@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     transform: [{ translateX: 8 }, { translateY: 25 }],
     zIndex:1,
+    overflow:"scroll",
   },
 
   ownerInfo: {
@@ -37,6 +38,7 @@ export const styles = StyleSheet.create({
     width: 70,
     height: 70,
     borderRadius: 50,
+    resizeMode:"contain",
   },
 
   ownerName: {
@@ -57,13 +59,15 @@ export const styles = StyleSheet.create({
     width: 220,
     height: 220,
     borderRadius: 25,
-    transform: [{translateX: 50}, {translateY: -65}]
+    transform: [{translateX: 50}, {translateY: -65}],
+    resizeMode:"contain"
   },
 
   postDescricao:{
     fontSize: 18,
     fontWeight:"300",
-    textAlign:"justify"
+    textAlign:"justify",
+    transform:[{translateY: -55}]
   },
 
   postData:{
@@ -83,26 +87,47 @@ export const styles = StyleSheet.create({
     borderRadius: 15,
     transform: [{translateX: 100}],
     textShadowColor: "#000",
-    textShadowRadius: 15,
-    color: "#ff60aa"
+    textShadowRadius: 25,
+    color: "#aa2050"
   },
 
   postTitle:{
-    fontSize: 40,
+    fontSize: 30,
     textAlign:"center",
     fontWeight:"bold",
+    transform: [{translateX: 0}, {translateY: -75}]
   },
 
   postSmallDetails:{
     flexDirection:"row",
     width:"100%",
     justifyContent:"space-evenly",
+    alignItems:"center",
   },
 
   postCateg:{
     fontSize:14,
     backgroundColor:"#7a7a7a60",
     borderRadius: 15,
-    
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+  },
+
+  buttonArea:{
+    width: "85%", 
+  },
+
+  buttonAdd:{
+    width:"100%",
+    height: 45,
+    alignItems:"center",
+    justifyContent:"center",
+    backgroundColor: "#40cc60",
+    borderRadius:20,
+    transform: [{translateX: 25}, {translateY: -10}]
+  },
+
+  buttonText:{
+    fontSize: 22,
   },
 });

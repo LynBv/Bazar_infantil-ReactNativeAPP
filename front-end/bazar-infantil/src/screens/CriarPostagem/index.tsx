@@ -54,6 +54,7 @@ const CreatePostScreen = () => {
     { title: "ANOS14" },
   ];
 
+
   const pickImage = async () => {
     const permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -117,6 +118,7 @@ const CreatePostScreen = () => {
           },
         }
       );
+
 
       if (response.status === 201) {
         Alert.alert("Sucesso", "Postagem criada com sucesso!");
