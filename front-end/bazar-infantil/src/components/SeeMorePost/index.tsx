@@ -97,7 +97,7 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
       <ScrollView style={styles.container}>
         <View style={styles.ownerInfo}>
           {avatarImage && (
-            <Image source={{ uri: avatarImage }} style={{height: 70, width: 70, borderRadius: 50}}/>
+            <Image source={{ uri: avatarImage }} style={{height: 50, width: 50, borderRadius: 50, marginLeft: 15,}}/>
           )}
           <Text style={styles.ownerName}>
             {postagem.usuarioDTO.nome}
@@ -106,7 +106,7 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
         <View style={styles.postInfo}>
           <Text style={styles.postTitle}>{postagem.titulo}</Text>
           {postImage && (
-            <Image source={{ uri: postImage }}  />
+            <Image source={{ uri: postImage }} style={{height: 230, width:230, borderRadius: 8, marginTop: 20, alignSelf: "center", borderWidth: 2, borderColor:"#7956a1"}} />
           )}
           <Text style={styles.postDescricao}>
             {postagem.descricao}
@@ -118,8 +118,9 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
             <Text style={styles.postCateg}>
               {categIdade()}
             </Text>
-            <Text style={styles.postData}>{postagem.dataCriacao}</Text>
+            
           </View>
+          <Text style={styles.postData}>Data da Postagem: {postagem.dataCriacao}</Text>
           <Text style={styles.postPreco}>{preco.format(postagem.preco)}</Text>
         </View>
         <View style={styles.buttonArea}>
