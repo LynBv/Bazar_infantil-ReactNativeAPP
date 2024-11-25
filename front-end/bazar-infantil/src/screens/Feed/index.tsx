@@ -35,31 +35,31 @@ export default function Feed() {
     : postagens.filter((postagem) =>
         postagem.usuarioDTO.nome.toUpperCase().includes(query.toUpperCase())); 
     
-  const handleSearch = () => {
-    let queryUpcase = query.toUpperCase();
+  // const handleSearch = () => {
+  //   let queryUpcase = query.toUpperCase();
 
-    const newPostagem = postagens.filter((postagem) =>
-      postagem.usuarioDTO.nome.toUpperCase().includes(queryUpcase)
-    );
+  //   const newPostagem = postagens.filter((postagem) =>
+  //     postagem.usuarioDTO.nome.toUpperCase().includes(queryUpcase)
+  //   );
 
-    setQueryPostagens(newPostagem);
-  };
+  //   setQueryPostagens(newPostagem);
+  // };
 
-  useEffect(() => {
-    LoadPostagens();
-  }, []);
+  // useEffect(() => {
+  //   LoadPostagens();
+  // }, []);
 
-  useEffect(() => {
-    setIsSerching(true);
-    handleSearch();
-    if (query === "") {
-      setIsSerching(false);
-    }
-  }, [query]);
+  // useEffect(() => {
+  //   setIsSearching(true);
+  //   handleSearch();
+  //   if (query === "") {
+  //     setIsSearching(false);
+  //   }
+  // }, [query]);
 
-  const showPostagens = () => {
-    return isSearching ? queryPostagens : postagens;
-  };
+  // const showPostagens = () => {
+  //   return isSearching ? queryPostagens : postagens;
+  // };
   const adicionarAoCarrinho = (postagem: Postagem) => {
     navigation.navigate("Carrinho", { postagem });
   };
