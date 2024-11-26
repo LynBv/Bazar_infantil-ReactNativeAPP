@@ -20,7 +20,7 @@ export const SeeMorePost = ({ postagem }: PropsPostagem) => {
       imagem: postImage,
     };
 
-    console.log("Adicionando item ao carrinho:", itemCarrinho);
+    //console.log("Adicionando item ao carrinho:", itemCarrinho);
 
     adicionarAoCarrinho(itemCarrinho);
   };

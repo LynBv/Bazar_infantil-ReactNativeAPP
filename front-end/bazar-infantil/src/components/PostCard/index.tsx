@@ -10,27 +10,34 @@ import { useAuth } from "../../hooks/useAuth";
 import { DeletePostagemUsuario } from "../../services/DeletePostagemUsuario";
 import { CarrinhoContext } from "../../components/context/CarrinhoContext";
 
-const PostCard = ({ postagem, isOnProfile }: PropsPostagem) => {
+const PostCard = ({
+  postagem,
+  isOnProfile,
+  postagens,
+  setPostagens,
+}: PropsPostagem) => {
   const navigation = useNavigation();
   const { usuario } = useAuth();
   const isTheOwner: boolean = postagem.usuarioDTO.id === usuario.id;
   const showDelete: boolean = isTheOwner && isOnProfile;
+  const { adicionarAoCarrinho } = useContext(CarrinhoContext);
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
 
   const avatarImage = "data:image/png;base64," + postagem.usuarioDTO.base64;
   const postImage = "data:image/png;base64," + postagem.foto[0].dados;
 
   const handleDelete = async () => {
-    const response = await DeletePostagemUsuario(postagem.id.toString())
+    const response = await DeletePostagemUsuario(postagem.id.toString());
 
     if (response && response.status === 204) {
-      alert("postagem deletada com sucesso")
+      const newPostagens = postagens.filter((p) => p.id !== postagem.id);
+      setPostagens(newPostagens);
+
+      alert("postagem deletada com sucesso");
     } else {
       console.error("nao deletou");
     }
   };
-  const { adicionarAoCarrinho } = useContext(CarrinhoContext);
-
-  const [snackbarVisible, setSnackbarVisible] = useState(false);
 
   const handleAddToCart = () => {
     const itemCarrinho = {
@@ -39,24 +46,27 @@ const PostCard = ({ postagem, isOnProfile }: PropsPostagem) => {
       preco: postagem.preco,
       imagem: "data:image/png;base64," + postagem.foto[0].dados,
     };
-  
+
     adicionarAoCarrinho(itemCarrinho);
     setSnackbarVisible(true);
   };
-  
 
   return (
     <View style={styles.card}>
-      <View style={styles.infoUser}>
-        <Image source={{ uri: avatarImage }} style={styles.avatar} />
-        <Text style={[styles.nomeUsuario, styles.estiloTexto]}>
-          {postagem.usuarioDTO.nome}
-        </Text>
-        {showDelete && (
-          <TouchableOpacity onPress={handleDelete}>
-            <IconM name="delete" size={30} color="#ff6f69" />
-          </TouchableOpacity>
-        )}
+      <View style={styles.header}>
+        <View style={styles.infoUser}>
+          <Image source={{ uri: avatarImage }} style={styles.avatar} />
+          <Text style={[styles.nomeUsuario, styles.estiloTexto]}>
+            {postagem.usuarioDTO.nome}
+          </Text>
+        </View>
+        <View style={styles.delete}>
+          {showDelete && (
+            <TouchableOpacity onPress={handleDelete}>
+              <IconM name="delete" size={30} color="#ff6f69" />
+            </TouchableOpacity>
+          )}
+        </View>
       </View>
 
       <Image source={{ uri: postImage }} style={styles.postImg} />
